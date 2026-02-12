@@ -107,7 +107,7 @@
     const commands = {
         home: () => showPage('home'),
         about: () => showPage('about'),
-        projects: () => showPage('projects'),
+        work: () => showPage('work'),
         contact: () => showPage('contact'),
         help: () => showPage('help'),
         
@@ -157,7 +157,7 @@
         },
         
         ls: () => {
-            print(`<span class="text-accent">about.txt</span>  <span class="text-accent">contact.txt</span>  <span class="text-accent">projects/</span>  <span class="text-muted">README.md</span>`);
+            print(`<span class="text-accent">about.txt</span>  <span class="text-accent">contact.txt</span>  <span class="text-accent">work/</span>  <span class="text-muted">README.md</span>`);
         },
         
         cat: (args) => {
@@ -175,7 +175,7 @@
         },
         
         cd: () => {
-            print('<span class="text-muted">Use page commands instead: home, about, projects, contact</span>');
+            print('<span class="text-muted">Use page commands instead: home, about, work, contact</span>');
         }
     };
 
@@ -241,7 +241,7 @@
     // ========================================
     
     const availableCommands = [
-        'home', 'about', 'projects', 'contact', 'help', 'clear',
+        'home', 'about', 'work', 'contact', 'help', 'clear',
         'history', 'whoami', 'date', 'echo', 'ls', 'pwd', 'cat'
     ];
 

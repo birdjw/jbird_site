@@ -22,7 +22,7 @@ const PAGES = {
 <span class="section-header">Available Commands</span>
   <span class="text-accent">home</span>      - Return to this page
   <span class="text-accent">about</span>     - Learn about me
-  <span class="text-accent">projects</span>  - View my work
+  <span class="text-accent">work</span>      - View my work
   <span class="text-accent">contact</span>   - Get in touch
   <span class="text-accent">help</span>      - Show all commands
   <span class="text-accent">clear</span>     - Clear the terminal
@@ -56,13 +56,13 @@ I enjoy creating clean, efficient, and user-friendly applications.
   <span class="text-warning">Tools:</span>        Git, Docker, Linux, VS Code
   <span class="text-warning">Databases:</span>    PostgreSQL, MongoDB, Redis
 
-<span class="text-muted">Type 'projects' to see my work or 'contact' to get in touch.</span>
+<span class="text-muted">Type 'work' to see my work or 'contact' to get in touch.</span>
 `
     },
     
-    projects: {
+    work: {
         content: `
-<span class="section-header">Projects</span>
+<span class="section-header">Work</span>
 
 <div class="project-item">
   <span class="project-title">Project One</span>
@@ -128,7 +128,7 @@ or opportunities to be part of your vision!</span>
 <span class="text-accent">Navigation</span>
   home        Return to the home page
   about       Learn about me
-  projects    View my portfolio
+  work        View my portfolio
   contact     Get my contact info
 
 <span class="text-accent">Utility</span>
@@ -150,7 +150,7 @@ or opportunities to be part of your vision!</span>
 const COMMAND_ALIASES = {
     'h': 'home',
     'a': 'about',
-    'p': 'projects',
+    'w': 'work',
     'c': 'contact',
     '?': 'help',
     'cls': 'clear'
