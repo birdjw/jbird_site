@@ -3,21 +3,24 @@
    Define content for each "page" of the terminal site
    ======================================== */
 
+// ASCII art stored separately to avoid template literal escaping issues
+const ASCII_LOGO = [
+    '       _           _                   ____  _         _ ',
+    '      | |         | |                 |  _ \\(_)       | |',
+    '      | | ___  ___| |__  _   _  __ _  | |_) |_ _ __ __| |',
+    '  _   | |/ _ \\/ __| \'_ \\| | | |/ _` | |  _ <| | \'__/ _` |',
+    ' | |__| | (_) \\__ \\ | | | |_| | (_| | | |_) | | | | (_| |',
+    '  \\____/ \\___/|___/_| |_|\\__,_|\\__,_| |____/|_|_|  \\__,_|'
+].join('\n');
+
 const PAGES = {
     home: {
         content: `
-<pre class="ascii-art">
-     _ _     _         _ 
-    (_) |   (_)       | |
-     _| |__  _ _ __ __| |
-    | | '_ \\| | '__/ _\` |
-    | | |_) | | | | (_| |
-    | |_.__/|_|_|  \\__,_|
-   _/ |                  
-  |__/                   
-</pre>
+<pre class="ascii-art">${ASCII_LOGO}</pre>
 
-<span class="text-muted">Welcome to my terminal.</span>
+<span class="text-muted">Hail, and well met! I welcome you to explore what I've been up to.
+If there is anything I can do for you, please contact me and I'd be
+excited to discuss.</span>
 
 <span class="section-header">Available Commands</span>
   <span class="text-accent">home</span>      - Return to this page

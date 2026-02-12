@@ -41,12 +41,22 @@
     const elements = {
         output: document.getElementById('output'),
         input: document.getElementById('terminal-input'),
-        cursor: document.getElementById('cursor')
+        cursor: document.getElementById('cursor'),
+        mirror: document.getElementById('input-mirror')
     };
 
     // ========================================
     // Core Functions
     // ========================================
+
+    /**
+     * Sync the visible mirror text with the hidden input
+     */
+    function syncMirror() {
+        if (elements.mirror) {
+            elements.mirror.textContent = elements.input.value;
+        }
+    }
 
     /**
      * Print content to the terminal output
@@ -275,6 +285,7 @@
                 e.preventDefault();
                 const input = elements.input.value;
                 elements.input.value = '';
+                syncMirror();
                 processCommand(input);
                 break;
                 
@@ -283,6 +294,7 @@
                 if (state.historyIndex > 0) {
                     state.historyIndex--;
                     elements.input.value = state.commandHistory[state.historyIndex];
+                    syncMirror();
                 }
                 break;
                 
@@ -291,9 +303,11 @@
                 if (state.historyIndex < state.commandHistory.length - 1) {
                     state.historyIndex++;
                     elements.input.value = state.commandHistory[state.historyIndex];
+                    syncMirror();
                 } else {
                     state.historyIndex = state.commandHistory.length;
                     elements.input.value = '';
+                    syncMirror();
                 }
                 break;
                 
@@ -302,6 +316,7 @@
                 const currentValue = elements.input.value;
                 if (currentValue) {
                     elements.input.value = autocomplete(currentValue);
+                    syncMirror();
                 }
                 break;
                 
@@ -318,6 +333,7 @@
                     e.preventDefault();
                     printCommand(elements.input.value + '^C');
                     elements.input.value = '';
+                    syncMirror();
                 }
                 break;
         }
@@ -330,6 +346,9 @@
     function init() {
         // Set up event listeners
         elements.input.addEventListener('keydown', handleKeyDown);
+        
+        // Sync mirror on every input change
+        elements.input.addEventListener('input', syncMirror);
         
         // Click anywhere to focus input
         document.querySelector('.terminal').addEventListener('click', (e) => {
