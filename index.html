@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jbird ~ terminal</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- ========================================
+         Desktop: Terminal UI
+         ======================================== -->
+    <div class="terminal desktop-only">
+        <div class="terminal-header">
+            <span class="terminal-title">guest@jbird:~</span>
+        </div>
+        
+        <div class="terminal-body">
+            <div id="output" class="terminal-output">
+                <!-- Terminal output will be rendered here -->
+            </div>
+            
+            <div class="terminal-input-line">
+                <span class="prompt">guest@jbird:~$</span>
+                <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" autocapitalize="off" spellcheck="false" autofocus>
+                <span id="cursor" class="cursor">█</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================
+         Mobile: Classic UI
+         ======================================== -->
+    <div class="mobile-app mobile-only">
+        <!-- Mobile Header with Hamburger -->
+        <header class="mobile-header">
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <h1 class="mobile-logo">jbird</h1>
+        </header>
+
+        <!-- Mobile Navigation Drawer -->
+        <nav class="mobile-nav" id="mobile-nav">
+            <a href="#home" class="nav-link active" data-page="home">Home</a>
+            <a href="#about" class="nav-link" data-page="about">About</a>
+            <a href="#projects" class="nav-link" data-page="projects">Projects</a>
+            <a href="#contact" class="nav-link" data-page="contact">Contact</a>
+        </nav>
+        <div class="nav-overlay" id="nav-overlay"></div>
+
+        <!-- Mobile Pages -->
+        <main class="mobile-content">
+            <section class="page active" id="page-home">
+                <h2>Welcome</h2>
+                <p class="lead">Hi, I'm <strong>jbird</strong> — a developer who builds things for the web.</p>
+                <p>Explore my work and get in touch.</p>
+                <div class="quick-links">
+                    <a href="#about" class="btn" data-page="about">About Me</a>
+                    <a href="#projects" class="btn btn-outline" data-page="projects">View Projects</a>
+                </div>
+            </section>
+
+            <section class="page" id="page-about">
+                <h2>About</h2>
+                <div class="card">
+                    <h3>Who I Am</h3>
+                    <p>I'm a passionate developer who loves building clean, efficient, and user-friendly applications.</p>
+                </div>
+                <div class="card">
+                    <h3>Skills</h3>
+                    <div class="skill-tags">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">Git</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">PostgreSQL</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page" id="page-projects">
+                <h2>Projects</h2>
+                <div class="project-card">
+                    <h3>Project One</h3>
+                    <p>A brief description of your first project. Explain what it does and what problem it solves.</p>
+                    <div class="project-tech">
+                        <span class="tag small">JavaScript</span>
+                        <span class="tag small">React</span>
+                        <span class="tag small">Node.js</span>
+                    </div>
+                    <a href="https://github.com/yourusername/project1" target="_blank" class="project-link">View on GitHub →</a>
+                </div>
+                <div class="project-card">
+                    <h3>Project Two</h3>
+                    <p>Another amazing project you've built. Highlight the key features and technologies used.</p>
+                    <div class="project-tech">
+                        <span class="tag small">Python</span>
+                        <span class="tag small">Flask</span>
+                        <span class="tag small">PostgreSQL</span>
+                    </div>
+                    <a href="https://github.com/yourusername/project2" target="_blank" class="project-link">View on GitHub →</a>
+                </div>
+                <div class="project-card">
+                    <h3>Project Three</h3>
+                    <p>A third project showcasing your diverse skill set. Include any notable achievements.</p>
+                    <div class="project-tech">
+                        <span class="tag small">TypeScript</span>
+                        <span class="tag small">Vue</span>
+                        <span class="tag small">MongoDB</span>
+                    </div>
+                    <a href="https://github.com/yourusername/project3" target="_blank" class="project-link">View on GitHub →</a>
+                </div>
+            </section>
+
+            <section class="page" id="page-contact">
+                <h2>Contact</h2>
+                <p>Feel free to reach out through any of the following:</p>
+                <div class="contact-links">
+                    <a href="mailto:your.email@example.com" class="contact-item">
+                        <span class="contact-icon">✉</span>
+                        <span>your.email@example.com</span>
+                    </a>
+                    <a href="https://github.com/yourusername" target="_blank" class="contact-item">
+                        <span class="contact-icon">⌘</span>
+                        <span>github.com/yourusername</span>
+                    </a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" class="contact-item">
+                        <span class="contact-icon">in</span>
+                        <span>linkedin.com/in/yourusername</span>
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="js/pages.js"></script>
+    <script src="js/terminal.js"></script>
+    <script src="js/mobile.js"></script>
+</body>
+</html>

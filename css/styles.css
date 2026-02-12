@@ -1,0 +1,598 @@
+/* ========================================
+   Terminal Website - Dark Theme
+   ======================================== */
+
+:root {
+    --bg-color: #0d1117;
+    --terminal-bg: #161b22;
+    --text-color: #c9d1d9;
+    --text-muted: #8b949e;
+    --accent-color: #58a6ff;
+    --success-color: #3fb950;
+    --error-color: #f85149;
+    --warning-color: #d29922;
+    --border-color: #30363d;
+    --header-bg: #21262d;
+    --btn-bg: #21262d;
+    --btn-hover: #30363d;
+    --font-mono: 'Courier New', 'Consolas', 'Monaco', 'Liberation Mono', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    background-color: var(--bg-color);
+    font-family: var(--font-mono);
+    font-size: 16px;
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+/* ========================================
+   Terminal Container
+   ======================================== */
+
+.terminal {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: var(--terminal-bg);
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+}
+
+.terminal-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: var(--header-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.terminal-title {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+/* ========================================
+   Terminal Body & Output
+   ======================================== */
+
+.terminal-body {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.terminal-output {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.output-line {
+    margin-bottom: 5px;
+}
+
+.output-command {
+    color: var(--accent-color);
+}
+
+.output-prompt {
+    color: var(--success-color);
+}
+
+.output-error {
+    color: var(--error-color);
+}
+
+.output-info {
+    color: var(--text-muted);
+}
+
+.output-success {
+    color: var(--success-color);
+}
+
+.output-warning {
+    color: var(--warning-color);
+}
+
+/* ASCII Art and Headers */
+.ascii-art {
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.section-header {
+    color: var(--success-color);
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 5px;
+    margin: 15px 0 10px 0;
+}
+
+/* Links in terminal */
+.terminal-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--accent-color);
+}
+
+.terminal-link:hover {
+    color: var(--text-color);
+    border-bottom-color: var(--text-color);
+}
+
+/* ========================================
+   Input Line
+   ======================================== */
+
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.prompt {
+    color: var(--success-color);
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+.terminal-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-color);
+    font-family: var(--font-mono);
+    font-size: 16px;
+    caret-color: transparent;
+}
+
+.cursor {
+    color: var(--text-color);
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* ========================================
+   Content Styling (Terminal)
+   ======================================== */
+
+.project-item {
+    margin: 15px 0;
+    padding: 10px;
+    border-left: 2px solid var(--accent-color);
+    background-color: rgba(88, 166, 255, 0.05);
+}
+
+.project-title {
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.project-desc {
+    color: var(--text-muted);
+    margin: 5px 0;
+}
+
+.project-tech {
+    color: var(--warning-color);
+    font-size: 14px;
+}
+
+.contact-item {
+    margin: 8px 0;
+}
+
+.contact-label {
+    color: var(--text-muted);
+    display: inline-block;
+    min-width: 100px;
+}
+
+/* Table-like formatting */
+.info-row {
+    display: flex;
+    margin: 5px 0;
+}
+
+.info-label {
+    color: var(--warning-color);
+    min-width: 150px;
+}
+
+.info-value {
+    color: var(--text-color);
+}
+
+/* ========================================
+   Scrollbar Styling
+   ======================================== */
+
+.terminal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+    background: var(--terminal-bg);
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+.terminal-body::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* ========================================
+   Desktop/Mobile Visibility
+   ======================================== */
+
+.mobile-only {
+    display: none;
+}
+
+.desktop-only {
+    display: flex;
+}
+
+/* ========================================
+   Mobile App UI
+   ======================================== */
+
+.mobile-app {
+    display: none;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+}
+
+/* Mobile Header */
+.mobile-header {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    background-color: var(--header-bg);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.mobile-logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin-left: 16px;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-color);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile Navigation Drawer */
+.mobile-nav {
+    position: fixed;
+    top: 58px;
+    left: -280px;
+    width: 280px;
+    height: calc(100vh - 58px);
+    background-color: var(--terminal-bg);
+    border-right: 1px solid var(--border-color);
+    z-index: 99;
+    transition: left 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+}
+
+.mobile-nav.open {
+    left: 0;
+}
+
+.nav-link {
+    display: block;
+    padding: 16px 24px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background-color: var(--btn-hover);
+    color: var(--accent-color);
+    border-left-color: var(--accent-color);
+}
+
+.nav-overlay {
+    display: none;
+    position: fixed;
+    top: 58px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 98;
+}
+
+.nav-overlay.open {
+    display: block;
+}
+
+/* Mobile Content */
+.mobile-content {
+    flex: 1;
+    padding: 24px 20px;
+    overflow-y: auto;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.page h2 {
+    color: var(--accent-color);
+    font-size: 28px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.page p {
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    line-height: 1.7;
+}
+
+.page .lead {
+    font-size: 18px;
+    color: var(--text-color);
+}
+
+/* Cards */
+.card {
+    background-color: var(--terminal-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.card h3 {
+    color: var(--success-color);
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 14px 24px;
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    text-decoration: none;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    margin-right: 12px;
+    margin-bottom: 12px;
+}
+
+.btn:hover {
+    background-color: var(--text-color);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+}
+
+.btn-outline:hover {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+}
+
+.quick-links {
+    margin-top: 24px;
+}
+
+/* Tags */
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 8px 14px;
+    background-color: var(--btn-bg);
+    color: var(--warning-color);
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.tag.small {
+    padding: 4px 10px;
+    font-size: 12px;
+}
+
+/* Project Cards (Mobile) */
+.project-card {
+    background-color: var(--terminal-bg);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--accent-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.project-card h3 {
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.project-card p {
+    margin-bottom: 12px;
+}
+
+.project-card .project-tech {
+    margin-bottom: 12px;
+}
+
+.project-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.project-link:hover {
+    text-decoration: underline;
+}
+
+/* Contact Links (Mobile) */
+.contact-links {
+    margin-top: 20px;
+}
+
+.mobile-content .contact-item {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    background-color: var(--terminal-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.mobile-content .contact-item:hover {
+    border-color: var(--accent-color);
+    background-color: var(--btn-hover);
+}
+
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--btn-bg);
+    border-radius: 8px;
+    margin-right: 16px;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+/* ========================================
+   Responsive Breakpoints
+   ======================================== */
+
+@media (max-width: 768px) {
+    .desktop-only {
+        display: none !important;
+    }
+    
+    .mobile-only {
+        display: flex !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .mobile-content {
+        padding: 20px 16px;
+    }
+    
+    .page h2 {
+        font-size: 24px;
+    }
+    
+    .btn {
+        display: block;
+        text-align: center;
+        margin-right: 0;
+    }
+}
+
+/* ========================================
+   Utility Classes
+   ======================================== */
+
+.hidden {
+    display: none !important;
+}
+
+.text-accent { color: var(--accent-color); }
+.text-success { color: var(--success-color); }
+.text-error { color: var(--error-color); }
+.text-warning { color: var(--warning-color); }
+.text-muted { color: var(--text-muted); }
+
+.mt-1 { margin-top: 10px; }
+.mt-2 { margin-top: 20px; }
+.mb-1 { margin-bottom: 10px; }
+.mb-2 { margin-bottom: 20px; }
