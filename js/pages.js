@@ -18,9 +18,7 @@ const PAGES = {
         content: `
 <pre class="ascii-art">${ASCII_LOGO}</pre>
 
-<span class="text-muted">Hail, and well met! I welcome you to explore what I've been up to.
-If there is anything I can do for you, please contact me and I'd be
-excited to discuss.</span>
+<span class="text-muted">Hail, and well met! I welcome you to explore more about who I am and what I've been up to. If there is anything I can do for you, contact me! I'd be excited to discuss.</span>
 
 <span class="section-header">Available Commands</span>
   <span class="text-accent">home</span>      - Return to this page
