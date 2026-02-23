@@ -48,8 +48,11 @@ const PAGES = {
 </div>
 
 <span class="section-header">Bio</span>
-Hello! I'm a passionate developer who loves building things for the web.
-I enjoy creating clean, efficient, and user-friendly applications.
+I like building systems that do the boring stuff for us.
+
+I’m a developer focused on simplifying workflows and removing friction from everyday tasks. From automation scripts to backend services, I enjoy designing software that replaces repetitive effort with reliable logic.
+
+This site is a running log of experiments, projects, and the ongoing process of getting better at building things that work.
 
 <span class="section-header">Skills</span>
   <span class="text-warning">Languages:</span>    JavaScript, Python, TypeScript, HTML/CSS
