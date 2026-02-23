@@ -61,6 +61,27 @@ html, body {
     font-size: 14px;
 }
 
+.terminal-nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+}
+
+.terminal-nav-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+}
+
+.terminal-nav-link:hover {
+    color: var(--accent-color);
+    background-color: var(--btn-hover);
+}
+
 /* ========================================
    Terminal Body & Output
    ======================================== */

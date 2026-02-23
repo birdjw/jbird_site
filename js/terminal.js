@@ -350,6 +350,18 @@
         // Sync mirror on every input change
         elements.input.addEventListener('input', syncMirror);
         
+        // Nav bar links
+        document.querySelectorAll('.terminal-nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const command = link.dataset.command;
+                if (command) {
+                    processCommand(command);
+                    focusInput();
+                }
+            });
+        });
+        
         // Click anywhere to focus input
         document.querySelector('.terminal').addEventListener('click', (e) => {
             // Don't focus if clicking a link or button
