@@ -101,4 +101,81 @@
         }, 250);
     });
 
+    // Typing animation on home page
+    const typingEl = document.getElementById('typing-text');
+    const prefixEl = document.getElementById('typing-prefix');
+    if (typingEl && prefixEl) {
+        const items = [
+            { prefix: 'skill acquired → ', value: 'JavaScript' },
+            { prefix: 'skill acquired → ', value: 'Python' },
+            { prefix: 'skill acquired → ', value: 'TypeScript' },
+            { prefix: 'project shipped → ', value: 'Project One' },
+            { prefix: 'skill acquired → ', value: 'React' },
+            { prefix: 'skill acquired → ', value: 'Node.js' },
+            { prefix: 'project shipped → ', value: 'Project Two' },
+            { prefix: 'skill acquired → ', value: 'Git' },
+            { prefix: 'skill acquired → ', value: 'Docker' },
+            { prefix: 'project shipped → ', value: 'Project Three' },
+            { prefix: 'skill acquired → ', value: 'PostgreSQL' },
+        ];
+        let idx = 0;
+        let charIdx = 0;
+        let isDeleting = false;
+
+        function typeLoop() {
+            const current = items[idx];
+            prefixEl.textContent = current.prefix;
+            charIdx += isDeleting ? -1 : 1;
+            typingEl.textContent = current.value.slice(0, charIdx);
+
+            let delay = isDeleting ? 50 : 90;
+
+            if (!isDeleting && charIdx === current.value.length) {
+                delay = 1800;
+                isDeleting = true;
+            } else if (isDeleting && charIdx === 0) {
+                isDeleting = false;
+                idx = (idx + 1) % items.length;
+                delay = 300;
+            }
+
+            setTimeout(typeLoop, delay);
+        }
+
+        typeLoop();
+    }
+
+    // Character sheet: tab switching + skill bar animation
+    const charSheet = document.querySelector('.char-sheet');
+    if (charSheet) {
+        function animateBars(panel) {
+            panel.querySelectorAll('.skill-fill').forEach(bar => {
+                bar.style.width = '0';
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        bar.style.width = bar.dataset.level + '%';
+                    });
+                });
+            });
+        }
+
+        charSheet.querySelectorAll('.char-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetId = 'char-' + tab.dataset.tab;
+                charSheet.querySelectorAll('.char-tab').forEach(t => t.classList.remove('active'));
+                charSheet.querySelectorAll('.char-panel').forEach(p => p.classList.remove('active'));
+                tab.classList.add('active');
+                const panel = document.getElementById(targetId);
+                if (panel) {
+                    panel.classList.add('active');
+                    if (tab.dataset.tab === 'skills') animateBars(panel);
+                }
+            });
+        });
+
+        // Animate bars on initial load
+        const defaultPanel = charSheet.querySelector('.char-panel.active');
+        if (defaultPanel) setTimeout(() => animateBars(defaultPanel), 400);
+    }
+
 })();
