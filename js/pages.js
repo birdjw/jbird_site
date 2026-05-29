@@ -19,14 +19,6 @@ const PAGES = {
 <pre class="ascii-art">${ASCII_LOGO}</pre>
 
 <span class="text-muted">Hail, and well met! I welcome you to explore more about who I am and what I've been up to. If there is anything I can do for you, contact me! I'd be excited to discuss.</span>
-
-<span class="section-header">Available Commands</span>
-  <span class="text-accent">home</span>      - Return to this page
-  <span class="text-accent">about</span>     - Learn about me
-  <span class="text-accent">work</span>      - View my work
-  <span class="text-accent">contact</span>   - Get in touch
-  <span class="text-accent">help</span>      - Show all commands
-  <span class="text-accent">clear</span>     - Clear the terminal
 `
     },
     
@@ -55,10 +47,21 @@ I’m a developer focused on simplifying workflows and removing friction from ev
 This site is a running log of experiments, projects, and the ongoing process of getting better at building things that work.
 
 <span class="section-header">Skills</span>
-  <span class="text-warning">Languages:</span>    JavaScript, Python, TypeScript, HTML/CSS
-  <span class="text-warning">Frameworks:</span>   React, Node.js, Express, Vue
-  <span class="text-warning">Tools:</span>        Git, Docker, Linux, VS Code
-  <span class="text-warning">Databases:</span>    PostgreSQL, MongoDB, Redis
+  <span class="text-warning">Languages</span>
+  JavaScript  [██████████████████████░░] 90
+  Python      [██████████████████░░░░░░] 75
+  TypeScript  [████████████████░░░░░░░░] 65
+  HTML/CSS    [██████████████░░░░░░░░░░] 60
+
+  <span class="text-warning">Frameworks</span>
+  React       [█████████████████░░░░░░░] 70
+  Node.js     [███████████████████░░░░░] 80
+  Express     [██████████████████░░░░░░] 75
+
+  <span class="text-warning">Tools</span>
+  Git         [████████████████████░░░░] 85
+  Docker      [████████████████░░░░░░░░] 65
+  PostgreSQL  [██████████████████░░░░░░] 75
 
 <span class="text-muted">Type 'work' to see my work or 'contact' to get in touch.</span>
 `

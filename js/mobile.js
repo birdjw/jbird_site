@@ -173,9 +173,19 @@
             });
         });
 
-        // Animate bars on initial load
+        // Use IntersectionObserver to safely trigger bar animation when visible
         const defaultPanel = charSheet.querySelector('.char-panel.active');
-        if (defaultPanel) setTimeout(() => animateBars(defaultPanel), 400);
+        if (defaultPanel) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateBars(defaultPanel);
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.1 });
+            observer.observe(charSheet);
+        }
     }
 
 })();

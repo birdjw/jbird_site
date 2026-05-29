@@ -42,7 +42,9 @@
         output: document.getElementById('output'),
         input: document.getElementById('terminal-input'),
         cursor: document.getElementById('cursor'),
-        mirror: document.getElementById('input-mirror')
+        mirror: document.getElementById('input-mirror'),
+        page: null,
+        log: null
     };
 
     // ========================================
@@ -65,9 +67,40 @@
         const line = document.createElement('div');
         line.className = `output-line ${className}`.trim();
         line.innerHTML = content;
-        elements.output.appendChild(line);
+                elements.log.appendChild(line);
         scrollToBottom();
     }
+
+        function createOutputSections() {
+                elements.output.innerHTML = '';
+
+                const page = document.createElement('div');
+                page.className = 'terminal-page';
+
+                const log = document.createElement('div');
+                log.className = 'terminal-log';
+
+                elements.output.appendChild(page);
+                elements.output.appendChild(log);
+
+                elements.page = page;
+                elements.log = log;
+        }
+
+        function getCommandFooter() {
+                return `
+<div class="terminal-command-footer">
+    <span class="section-header">Commands</span>
+    <div class="terminal-command-list">
+        <span class="text-accent">home</span>
+        <span class="text-accent">about</span>
+        <span class="text-accent">work</span>
+        <span class="text-accent">contact</span>
+        <span class="text-accent">help</span>
+        <span class="text-accent">clear</span>
+    </div>
+</div>`;
+        }
 
     /**
      * Print a command with prompt
@@ -80,7 +113,13 @@
      * Clear the terminal output
      */
     function clearTerminal() {
-        elements.output.innerHTML = '';
+        if (elements.page) {
+            elements.page.innerHTML = '';
+        }
+
+        if (elements.log) {
+            elements.log.innerHTML = '';
+        }
     }
 
     /**
@@ -98,6 +137,13 @@
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
+    }
+
+    /**
+     * Sleep for ms milliseconds
+     */
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 
     /**
@@ -123,6 +169,7 @@
         
         clear: () => {
             clearTerminal();
+            showPage(state.currentPage);
             return false; // Don't print anything after
         },
         
@@ -186,6 +233,47 @@
         
         cd: () => {
             print('<span class="text-muted">Use page commands instead: home, about, work, contact</span>');
+        },
+
+        status: () => {
+            const days  = Math.floor(Math.random() * 365) + 100;
+            const hours = Math.floor(Math.random() * 24);
+            const mins  = Math.floor(Math.random() * 60);
+            const mem   = (Math.random() * 4 + 2).toFixed(1);
+            const cpu   = (Math.random() * 8 + 0.5).toFixed(1);
+            const load  = () => (Math.random() * 0.9).toFixed(2);
+            print(`<span class="section-header">System Status</span>
+  <span class="text-warning">hostname:</span>  jbird.dev
+  <span class="text-warning">uptime:</span>    ${days}d ${hours}h ${mins}m
+  <span class="text-warning">memory:</span>    ${mem}GB / 16GB
+  <span class="text-warning">cpu:</span>       ${cpu}% — 8 cores
+  <span class="text-warning">load avg:</span>  ${load()} ${load()} ${load()}
+  <span class="text-warning">disk:</span>      42GB / 512GB (8% used)
+  <span class="text-success">● all systems operational</span>`);
+        },
+
+        ping: async (args) => {
+            const host = escapeHtml(args[0] || 'jbird.dev');
+            print(`PING ${host}: 56 data bytes`);
+            for (let i = 1; i <= 4; i++) {
+                await sleep(280 + Math.random() * 140);
+                const ms = (Math.random() * 15 + 8).toFixed(3);
+                print(`64 bytes from ${host}: icmp_seq=${i} ttl=64 time=<span class="text-success">${ms} ms</span>`);
+            }
+            await sleep(200);
+            print(`<span class="text-muted">--- ${host} ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss</span>`);
+        },
+
+        ps: () => {
+            print(`  <span class="text-muted">PID    NAME                     STATUS</span>
+  <span class="text-accent">1001</span>   curiosity.service        <span class="text-success">running</span>
+  <span class="text-accent">1002</span>   coffee.service           <span class="text-success">running</span>
+  <span class="text-accent">1003</span>   problem-solving.d        <span class="text-success">running</span>
+  <span class="text-accent">1004</span>   music-player.service     <span class="text-success">running</span>
+  <span class="text-accent">1005</span>   side-project.service     <span class="text-warning">sleeping</span>
+  <span class="text-accent">1006</span>   meetings.service         <span class="text-error">stopped</span>
+  <span class="text-accent">1007</span>   readme-writer.d          <span class="text-error">stopped</span>`);
         }
     };
 
@@ -195,7 +283,8 @@
     function showPage(pageName) {
         if (PAGES[pageName]) {
             state.currentPage = pageName;
-            print(PAGES[pageName].content);
+            elements.page.innerHTML = `${PAGES[pageName].content}${getCommandFooter()}`;
+            document.querySelector('.terminal-body').scrollTop = 0;
         } else {
             print(`<span class="text-error">Page not found: ${escapeHtml(pageName)}</span>`);
         }
@@ -344,6 +433,8 @@
     // ========================================
 
     function init() {
+        createOutputSections();
+
         // Set up event listeners
         elements.input.addEventListener('keydown', handleKeyDown);
         
@@ -357,7 +448,7 @@
                 const command = link.dataset.command;
                 if (command) {
                     processCommand(command);
-                    focusInput();
+                    elements.input.focus({ preventScroll: true });
                 }
             });
         });
@@ -370,11 +461,8 @@
             }
         });
         
-        // Show welcome/home page
-        setTimeout(() => {
-            showPage('home');
-            focusInput();
-        }, CONFIG.welcomeDelay);
+        // Boot sequence then show home page
+        bootSequence();
         
         // Handle visibility change (refocus on tab return)
         document.addEventListener('visibilitychange', () => {
@@ -382,6 +470,22 @@
                 focusInput();
             }
         });
+    }
+
+    // ========================================
+    // Boot Sequence
+    // ========================================
+
+    async function bootSequence() {
+        await sleep(50);
+        print('<span class="text-muted">initializing...</span>');
+        await sleep(300);
+        print('<span class="text-muted">loading profile...</span>');
+        await sleep(200);
+        print('<span class="text-muted">mounting filesystem...</span>');
+        await sleep(300);
+        showPage('home');
+        focusInput();
     }
 
     // Start the terminal when DOM is ready

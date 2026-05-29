@@ -92,6 +92,22 @@ html, body {
     overflow-y: auto;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    position: relative;
+}
+
+.terminal-body::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.03) 2px,
+        rgba(0,0,0,0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
 }
 
 .terminal-output {
@@ -99,8 +115,24 @@ html, body {
     word-wrap: break-word;
 }
 
+.terminal-page {
+    min-height: 100%;
+}
+
+.terminal-log {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color);
+}
+
+@keyframes termLine {
+    from { opacity: 0; transform: translateX(-4px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
 .output-line {
     margin-bottom: 5px;
+    animation: termLine 0.08s ease forwards;
 }
 
 .output-command {
@@ -128,9 +160,58 @@ html, body {
 }
 
 /* ASCII Art and Headers */
+@keyframes logoSweep {
+    from { background-position: 120% center; }
+    to   { background-position:   0% center; }
+}
+
+@keyframes logoGlitch {
+    0%, 79%, 100% {
+        text-shadow: none;
+        transform: none;
+        opacity: 1;
+    }
+    80% {
+        text-shadow: -3px 0 #ff0040, 3px 0 #00ffcc;
+        transform: translateX(2px);
+    }
+    82% {
+        text-shadow: 3px 0 #ff0040, -3px 0 #00ffcc;
+        transform: translateX(-2px);
+    }
+    84% {
+        text-shadow: none;
+        transform: none;
+    }
+    86% {
+        text-shadow: -1px 0 #ff0040;
+        transform: skewX(-2deg);
+        opacity: 0.9;
+    }
+    88% {
+        text-shadow: none;
+        transform: none;
+        opacity: 1;
+    }
+}
+
 .ascii-art {
-    color: var(--accent-color);
+    background: linear-gradient(
+        90deg,
+        #39d353  0%,
+        #a0f0b0 42%,
+        #ffffff 50%,
+        #a0f0b0 58%,
+        #39d353 100%
+    );
+    background-size: 250% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 10px;
+    animation:
+        logoSweep 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+        logoGlitch 6s 1.6s infinite;
 }
 
 .section-header {
@@ -138,6 +219,16 @@ html, body {
     border-bottom: 1px dashed var(--border-color);
     padding-bottom: 5px;
     margin: 15px 0 10px 0;
+}
+
+.terminal-command-footer {
+    margin-top: 24px;
+}
+
+.terminal-command-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
 }
 
 /* Links in terminal */
