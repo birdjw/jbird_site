@@ -223,7 +223,6 @@ html, body {
     white-space: pre;
     font-family: var(--font-mono);
     margin: 2px 0;
-    transition: text-shadow 0.1s;
 }
 
 .skill-bar.skill-bar-done {
@@ -231,12 +230,11 @@ html, body {
 }
 
 @keyframes skillGlitch {
-    0%   { text-shadow: none; }
-    20%  { text-shadow: -2px 0 #ff0040, 2px 0 #00ffcc; color: #fff; }
-    40%  { text-shadow: 2px 0 #ff0040, -2px 0 #00ffcc; }
-    60%  { text-shadow: none; color: var(--success-color); }
-    80%  { text-shadow: -1px 0 #ff0040; }
-    100% { text-shadow: none; }
+    0%   { filter: none; }
+    20%  { filter: brightness(3) saturate(0.2); }
+    45%  { filter: brightness(1.5) hue-rotate(20deg); }
+    70%  { filter: brightness(0.9) saturate(1.8); }
+    100% { filter: none; }
 }
 
 .title-typer {

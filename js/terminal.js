@@ -291,7 +291,7 @@
             const max    = parseInt(bar.dataset.max,   10);
             let filled = 0;
 
-            function render() {
+            function render(done) {
                 const fill  = '█'.repeat(filled);
                 const empty = '░'.repeat(max - filled);
                 const pct   = Math.round((filled / max) * 100);

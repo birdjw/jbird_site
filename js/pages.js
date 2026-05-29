@@ -41,7 +41,6 @@ const PAGES = {
 </div>
 
 <span class="section-header">Bio</span>
-I like building systems that do the boring stuff for us.
 
 I’m a developer focused on simplifying workflows and removing friction from everyday tasks. From automation scripts to backend services, I enjoy designing software that replaces repetitive effort with reliable logic.
 
