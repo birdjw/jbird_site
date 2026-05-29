@@ -35,191 +35,65 @@
     </div>
 
     <!-- ========================================
-         Mobile: Classic UI
+         Mobile: Landscape UI
          ======================================== -->
     <div class="mobile-app mobile-only">
-        <!-- Mobile Header with Hamburger -->
-        <header class="mobile-header">
-            <button class="hamburger" id="hamburger" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <h1 class="mobile-logo">jbird</h1>
-        </header>
+        <!-- Portrait: Rotate Prompt -->
+        <div class="rotate-prompt" id="rotate-prompt">
+            <div class="rotate-icon">&#8635;</div>
+            <p>Please rotate your device to landscape mode</p>
+        </div>
 
-        <!-- Mobile Navigation Drawer -->
-        <nav class="mobile-nav" id="mobile-nav">
-            <a href="#home" class="nav-link active" data-page="home">Home</a>
-            <a href="#about" class="nav-link" data-page="about">About</a>
-            <a href="#work" class="nav-link" data-page="work">Work</a>
-            <a href="#contact" class="nav-link" data-page="contact">Contact</a>
-        </nav>
-        <div class="nav-overlay" id="nav-overlay"></div>
+        <!-- Landscape: Logo + Nav + Content -->
+        <div class="mobile-landscape" id="mobile-landscape">
+            <pre class="ascii-art mobile-ascii" id="mobile-logo"></pre>
+            <nav class="mobile-nav-links">
+                <a href="#" class="mobile-nav-link active" data-page="home">home</a>
+                <span class="mobile-nav-sep">/</span>
+                <a href="#" class="mobile-nav-link" data-page="about">about</a>
+                <span class="mobile-nav-sep">/</span>
+                <a href="#" class="mobile-nav-link" data-page="work">work</a>
+                <span class="mobile-nav-sep">/</span>
+                <a href="#" class="mobile-nav-link" data-page="contact">contact</a>
+            </nav>
 
-        <!-- Mobile Pages -->
-        <main class="mobile-content">
-            <section class="page active" id="page-home">
-                <h2>Welcome</h2>
-                <p class="lead">Hi, I'm <strong>jbird</strong> — a developer who builds things for the web.</p>
-                <p>Explore my work and get in touch.</p>
-                <div class="quick-links">
-                    <a href="#about" class="btn" data-page="about">About Me</a>
-                    <a href="#work" class="btn btn-outline" data-page="work">View Work</a>
-                </div>
+            <main class="mobile-content">
+                <section class="mobile-page active" id="page-home">
+                    <p class="lead">Hi, I'm <strong>jbird</strong> — a full-stack developer who builds things for the web.</p>
+                    <p>Explore my work and get in touch.</p>
+                </section>
 
-                <p class="home-typing-line"><span class="typing-prefix" id="typing-prefix"></span><span id="typing-text"></span><span class="typing-cursor">█</span></p>
+                <section class="mobile-page" id="page-about">
+                    <p>I'm a passionate full-stack developer looking for opportunities to improve the way we work. I'm especially motivated to build systems that simplify processes and remove friction from everyday tasks.</p>
+                    <p>Skills: JavaScript · TypeScript · Python · React · Node.js · Docker · PostgreSQL · Git</p>
+                </section>
 
-                <div class="char-sheet">
-                    <div class="char-sheet-header">
-                        <span class="char-class">CLASS: Full-Stack Developer</span>
-                        <div class="char-tabs">
-                            <button class="char-tab active" data-tab="skills">Skills</button>
-                            <button class="char-tab" data-tab="quests">Quests</button>
-                        </div>
+                <section class="mobile-page" id="page-work">
+                    <div class="mobile-project">
+                        <h3>Project One</h3>
+                        <p>A brief description of your first project.</p>
+                        <span class="mobile-tech">JavaScript · React · Node.js</span>
                     </div>
-                    <div class="char-panel active" id="char-skills">
-                        <div class="skill-row">
-                            <span class="skill-name">JavaScript</span>
-                            <div class="skill-bar"><div class="skill-fill" data-level="90"></div></div>
-                            <span class="skill-level">Lv.90</span>
-                        </div>
-                        <div class="skill-row">
-                            <span class="skill-name">TypeScript</span>
-                            <div class="skill-bar"><div class="skill-fill" data-level="75"></div></div>
-                            <span class="skill-level">Lv.75</span>
-                        </div>
-                        <div class="skill-row">
-                            <span class="skill-name">React</span>
-                            <div class="skill-bar"><div class="skill-fill" data-level="80"></div></div>
-                            <span class="skill-level">Lv.80</span>
-                        </div>
-                        <div class="skill-row">
-                            <span class="skill-name">Python</span>
-                            <div class="skill-bar"><div class="skill-fill" data-level="75"></div></div>
-                            <span class="skill-level">Lv.75</span>
-                        </div>
-                        <div class="skill-row">
-                            <span class="skill-name">Node.js</span>
-                            <div class="skill-bar"><div class="skill-fill" data-level="78"></div></div>
-                            <span class="skill-level">Lv.78</span>
-                        </div>
-                        <div class="skill-row">
-                            <span class="skill-name">Docker</span>
-                            <div class="skill-bar"><div class="skill-fill" data-level="62"></div></div>
-                            <span class="skill-level">Lv.62</span>
-                        </div>
-                        <div class="skill-row">
-                            <span class="skill-name">PostgreSQL</span>
-                            <div class="skill-bar"><div class="skill-fill" data-level="68"></div></div>
-                            <span class="skill-level">Lv.68</span>
-                        </div>
-                        <div class="skill-row">
-                            <span class="skill-name">Git</span>
-                            <div class="skill-bar"><div class="skill-fill" data-level="88"></div></div>
-                            <span class="skill-level">Lv.88</span>
-                        </div>
+                    <div class="mobile-project">
+                        <h3>Project Two</h3>
+                        <p>Another amazing project you've built.</p>
+                        <span class="mobile-tech">Python · Flask · PostgreSQL</span>
                     </div>
-                    <div class="char-panel" id="char-quests">
-                        <div class="quest-item">
-                            <span class="quest-status">✓</span>
-                            <div class="quest-info">
-                                <span class="quest-name">Project One</span>
-                                <span class="quest-tags">JavaScript · React · Node.js</span>
-                            </div>
-                        </div>
-                        <div class="quest-item">
-                            <span class="quest-status">✓</span>
-                            <div class="quest-info">
-                                <span class="quest-name">Project Two</span>
-                                <span class="quest-tags">Python · Flask · PostgreSQL</span>
-                            </div>
-                        </div>
-                        <div class="quest-item">
-                            <span class="quest-status">✓</span>
-                            <div class="quest-info">
-                                <span class="quest-name">Project Three</span>
-                                <span class="quest-tags">TypeScript · Vue · MongoDB</span>
-                            </div>
-                        </div>
+                    <div class="mobile-project">
+                        <h3>Project Three</h3>
+                        <p>A third project showcasing your diverse skill set.</p>
+                        <span class="mobile-tech">TypeScript · Vue · MongoDB</span>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section class="page" id="page-about">
-                <h2>About</h2>
-                <div class="card">
-                    <h3>Who I Am</h3>
-                    <p>I’m a passionate full-stack developer looking for opportunities to improve the way we work. I’m especially motivated to build systems that simplify processes and remove friction from everyday processes. Whether it’s automating workflows, connecting services through APIs, or designing structured backend logic, I enjoy creating tools that make complex tasks feel simple. This site documents my projects, experiments, and continued development as an engineer.</p>
-                </div>
-                <div class="card">
-                    <h3>Skills</h3>
-                    <div class="skill-tags">
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">TypeScript</span>
-                        <span class="tag">React</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">Git</span>
-                        <span class="tag">Docker</span>
-                        <span class="tag">PostgreSQL</span>
-                    </div>
-                </div>
-            </section>
-
-            <section class="page" id="page-work">
-                <h2>Work</h2>
-                <div class="project-card">
-                    <h3>Project One</h3>
-                    <p>A brief description of your first project. Explain what it does and what problem it solves.</p>
-                    <div class="project-tech">
-                        <span class="tag small">JavaScript</span>
-                        <span class="tag small">React</span>
-                        <span class="tag small">Node.js</span>
-                    </div>
-                    <a href="https://github.com/yourusername/project1" target="_blank" class="project-link">View on GitHub →</a>
-                </div>
-                <div class="project-card">
-                    <h3>Project Two</h3>
-                    <p>Another amazing project you've built. Highlight the key features and technologies used.</p>
-                    <div class="project-tech">
-                        <span class="tag small">Python</span>
-                        <span class="tag small">Flask</span>
-                        <span class="tag small">PostgreSQL</span>
-                    </div>
-                    <a href="https://github.com/yourusername/project2" target="_blank" class="project-link">View on GitHub →</a>
-                </div>
-                <div class="project-card">
-                    <h3>Project Three</h3>
-                    <p>A third project showcasing your diverse skill set. Include any notable achievements.</p>
-                    <div class="project-tech">
-                        <span class="tag small">TypeScript</span>
-                        <span class="tag small">Vue</span>
-                        <span class="tag small">MongoDB</span>
-                    </div>
-                    <a href="https://github.com/yourusername/project3" target="_blank" class="project-link">View on GitHub →</a>
-                </div>
-            </section>
-
-            <section class="page" id="page-contact">
-                <h2>Contact</h2>
-                <p>Feel free to reach out through any of the following:</p>
-                <div class="contact-links">
-                    <a href="mailto:your.email@example.com" class="contact-item">
-                        <span class="contact-icon">✉</span>
-                        <span>your.email@example.com</span>
-                    </a>
-                    <a href="https://github.com/yourusername" target="_blank" class="contact-item">
-                        <span class="contact-icon">⌘</span>
-                        <span>github.com/yourusername</span>
-                    </a>
-                    <a href="https://linkedin.com/in/yourusername" target="_blank" class="contact-item">
-                        <span class="contact-icon">in</span>
-                        <span>linkedin.com/in/yourusername</span>
-                    </a>
-                </div>
-            </section>
-        </main>
+                <section class="mobile-page" id="page-contact">
+                    <p>Feel free to reach out:</p>
+                    <p><a href="mailto:your.email@example.com" class="mobile-link">your.email@example.com</a></p>
+                    <p><a href="https://github.com/yourusername" target="_blank" class="mobile-link">github.com/yourusername</a></p>
+                    <p><a href="https://linkedin.com/in/yourusername" target="_blank" class="mobile-link">linkedin.com/in/yourusername</a></p>
+                </section>
+            </main>
+        </div>
     </div>
     
     <script src="js/pages.js"></script>
