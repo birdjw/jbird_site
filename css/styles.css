@@ -208,10 +208,55 @@ html, body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 10px;
+    display: block;
+    width: fit-content;
+    margin: 0 auto 10px;
+    font-size: min(calc((100vw - 40px) / 36), 26px);
     animation:
         logoSweep 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards,
         logoGlitch 6s 1.6s infinite;
+}
+
+.skill-bar {
+    display: block;
+    color: var(--success-color);
+    white-space: pre;
+    font-family: var(--font-mono);
+    margin: 2px 0;
+    transition: text-shadow 0.1s;
+}
+
+.skill-bar.skill-bar-done {
+    animation: skillGlitch 0.4s forwards;
+}
+
+@keyframes skillGlitch {
+    0%   { text-shadow: none; }
+    20%  { text-shadow: -2px 0 #ff0040, 2px 0 #00ffcc; color: #fff; }
+    40%  { text-shadow: 2px 0 #ff0040, -2px 0 #00ffcc; }
+    60%  { text-shadow: none; color: var(--success-color); }
+    80%  { text-shadow: -1px 0 #ff0040; }
+    100% { text-shadow: none; }
+}
+
+.title-typer {
+    -webkit-text-fill-color: #a0f0b0;
+    color: #a0f0b0;
+    font-size: 0.82em;
+}
+
+.title-typer.title-glitch {
+    animation: titleGlitch 0.55s forwards;
+}
+
+@keyframes titleGlitch {
+    0%  { text-shadow: none; }
+    15% { text-shadow: -2px 0 #ff0040, 2px 0 #00ffcc; -webkit-text-fill-color: #fff; }
+    30% { text-shadow: 2px 0 #ff0040, -2px 0 #00ffcc; }
+    45% { text-shadow: none; }
+    60% { text-shadow: -1px 0 #ff0040; transform: skewX(-3deg); -webkit-text-fill-color: #a0f0b0; }
+    80% { text-shadow: 1px 0 #00ffcc; transform: skewX(1deg); }
+    100% { text-shadow: none; transform: none; }
 }
 
 .section-header {

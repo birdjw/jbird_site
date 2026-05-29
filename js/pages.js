@@ -5,20 +5,19 @@
 
 // ASCII art stored separately to avoid template literal escaping issues
 const ASCII_LOGO = [
-    '         A Chronicle of The Deeds and Craft of',
     '   ___           _                  ______ _         _ ',
     '  |_  |         | |                 | ___ (_)       | |',
     '    | | ___  ___| |__  _   _  __ _  | |_/ /_ _ __ __| |',
     '    | |/ _ \\/ __| \'_ \\| | | |/ _` | | ___ \\ | \'__/ _` |',
     '/\\__/ / (_) \\__ \\ | | | |_| | (_| | | |_/ / | | | (_| |',
     '\\____/ \\___/|___/_| |_|\\__,_|\\__,_| \\____/|_|_|  \\__,_|',
-    '                              // full-stack developer'
 ].join('\n');
 
 const PAGES = {
     home: {
         content: `
-<pre class="ascii-art">${ASCII_LOGO}</pre>
+<pre class="ascii-art">         <span class="chronicle-typer"></span><span class="logo-body" style="display:none"><span class="logo-lines"></span><span class="title-line" style="display:none">
+                              // <span class="title-typer"></span></span></span></pre>
 
 <span class="text-muted">Hail, and well met! I welcome you to explore more about who I am and what I've been up to. If there is anything I can do for you, contact me! I'd be excited to discuss.</span>
 `
@@ -30,15 +29,15 @@ const PAGES = {
 
 <div class="info-row">
   <span class="info-label">Name:</span>
-  <span class="info-value">Your Name</span>
+  <span class="info-value">Joshua Bird</span>
 </div>
 <div class="info-row">
   <span class="info-label">Role:</span>
-  <span class="info-value">Software Developer</span>
+  <span class="info-value">Automation and Integration Specialist</span>
 </div>
 <div class="info-row">
   <span class="info-label">Location:</span>
-  <span class="info-value">Your City, Country</span>
+  <span class="info-value">Grand Rapids, MI</span>
 </div>
 
 <span class="section-header">Bio</span>
@@ -50,20 +49,20 @@ This site is a running log of experiments, projects, and the ongoing process of 
 
 <span class="section-header">Skills</span>
   <span class="text-warning">Languages</span>
-  JavaScript  [██████████████████████░░] 90
-  Python      [██████████████████░░░░░░] 75
-  TypeScript  [████████████████░░░░░░░░] 65
-  HTML/CSS    [██████████████░░░░░░░░░░] 60
+  <span class="skill-bar" data-label="JavaScript" data-value="22" data-max="24"></span>
+  <span class="skill-bar" data-label="Python    " data-value="18" data-max="24"></span>
+  <span class="skill-bar" data-label="TypeScript" data-value="16" data-max="24"></span>
+  <span class="skill-bar" data-label="HTML/CSS  " data-value="14" data-max="24"></span>
 
   <span class="text-warning">Frameworks</span>
-  React       [█████████████████░░░░░░░] 70
-  Node.js     [███████████████████░░░░░] 80
-  Express     [██████████████████░░░░░░] 75
+  <span class="skill-bar" data-label="React     " data-value="17" data-max="24"></span>
+  <span class="skill-bar" data-label="Node.js   " data-value="19" data-max="24"></span>
+  <span class="skill-bar" data-label="Express   " data-value="18" data-max="24"></span>
 
   <span class="text-warning">Tools</span>
-  Git         [████████████████████░░░░] 85
-  Docker      [████████████████░░░░░░░░] 65
-  PostgreSQL  [██████████████████░░░░░░] 75
+  <span class="skill-bar" data-label="Git       " data-value="20" data-max="24"></span>
+  <span class="skill-bar" data-label="Docker    " data-value="16" data-max="24"></span>
+  <span class="skill-bar" data-label="PostgreSQL" data-value="18" data-max="24"></span>
 
 <span class="text-muted">Type 'work' to see my work or 'contact' to get in touch.</span>
 `

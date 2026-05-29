@@ -277,14 +277,161 @@
         }
     };
 
+    // ========================================
+    // Skill Bar Animator
+    // ========================================
+
+    function animateSkillBars() {
+        const bars = document.querySelectorAll('.skill-bar');
+        if (!bars.length) return;
+
+        bars.forEach((bar, barIdx) => {
+            const label = bar.dataset.label;
+            const target = parseInt(bar.dataset.value, 10);
+            const max    = parseInt(bar.dataset.max,   10);
+            let filled = 0;
+
+            function render() {
+                const fill  = '█'.repeat(filled);
+                const empty = '░'.repeat(max - filled);
+                const pct   = Math.round((filled / max) * 100);
+                bar.innerHTML = `<span style="-webkit-text-fill-color:var(--text-color);color:var(--text-color)">${label}</span>  [${fill}${empty}] ${pct}`;
+            }
+
+            // Start each bar staggered by 120ms
+            const startDelay = barIdx * 120;
+            // Each tick fills one block; speed increases slightly as bar fills
+            function tick() {
+                if (filled < target) {
+                    filled++;
+                    render();
+                    setTimeout(tick, 55 + Math.random() * 25);
+                } else {
+                    render();
+                    // brief glitch flash on completion
+                    bar.classList.add('skill-bar-done');
+                    setTimeout(() => bar.classList.remove('skill-bar-done'), 400);
+                }
+            }
+
+            render(); // show empty state immediately
+            setTimeout(tick, startDelay);
+        });
+    }
+
+    // ========================================
+    // Title Typewriter
+    // ========================================
+
+    const CHRONICLE_TEXT = 'A Chronicle of The Deeds and Craft of';
+
+    const TITLES = [
+        'First of His Name,',
+        'Automator of Repetitive Tasks,',
+        'Keeper of the Sacred (API) Keys,',
+        'Warden of the Workflows'
+    ];
+
+    let titleTyperCleanup = null;
+
+    function startTitleTyper() {
+        const chronicleEl = document.querySelector('.chronicle-typer');
+        const logoBodyEl  = document.querySelector('.logo-body');
+        const titleEl     = document.querySelector('.title-typer');
+        if (!chronicleEl || !logoBodyEl || !titleEl) return null;
+
+        let titleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let timer = null;
+        let destroyed = false;
+
+        // Phase 3: cycle titles
+        function titleTick() {
+            if (destroyed) return;
+            const current = TITLES[titleIndex];
+
+            if (!isDeleting) {
+                charIndex++;
+                titleEl.textContent = current.slice(0, charIndex);
+
+                if (charIndex === current.length) {
+                    titleEl.classList.add('title-glitch');
+                    setTimeout(() => { if (!destroyed) titleEl.classList.remove('title-glitch'); }, 550);
+                    isDeleting = true;
+                    timer = setTimeout(titleTick, 2800);
+                } else {
+                    timer = setTimeout(titleTick, 42 + Math.random() * 28);
+                }
+            } else {
+                charIndex--;
+                titleEl.textContent = current.slice(0, charIndex);
+
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    titleIndex = (titleIndex + 1) % TITLES.length;
+                    timer = setTimeout(titleTick, 320);
+                } else {
+                    timer = setTimeout(titleTick, 20 + Math.random() * 12);
+                }
+            }
+        }
+
+        // Phase 2: scan-line reveal of the logo, then start titles
+        function showLogo() {
+            if (destroyed) return;
+            logoBodyEl.style.display = 'inline';
+
+            const linesEl = logoBodyEl.querySelector('.logo-lines');
+            const titleLineEl = logoBodyEl.querySelector('.title-line');
+            const lines = ASCII_LOGO.split('\n');
+            let lineIdx = 0;
+
+            function nextLine() {
+                if (destroyed) return;
+                if (lineIdx < lines.length) {
+                    linesEl.textContent += '\n' + lines[lineIdx];
+                    lineIdx++;
+                    timer = setTimeout(nextLine, 65);
+                } else {
+                    titleLineEl.style.display = 'inline';
+                    charIndex = 0;
+                    timer = setTimeout(titleTick, 500);
+                }
+            }
+
+            nextLine();
+        }
+
+        // Phase 1: type out the chronicle line
+        let chronicleIndex = 0;
+        function typeChronicle() {
+            if (destroyed) return;
+            chronicleIndex++;
+            chronicleEl.textContent = CHRONICLE_TEXT.slice(0, chronicleIndex);
+
+            if (chronicleIndex === CHRONICLE_TEXT.length) {
+                timer = setTimeout(showLogo, 500);
+            } else {
+                timer = setTimeout(typeChronicle, 42 + Math.random() * 28);
+            }
+        }
+
+        timer = setTimeout(typeChronicle, 400);
+        return function destroy() { destroyed = true; clearTimeout(timer); };
+    }
+
     /**
      * Show a page's content
      */
     function showPage(pageName) {
+        if (titleTyperCleanup) { titleTyperCleanup(); titleTyperCleanup = null; }
         if (PAGES[pageName]) {
             state.currentPage = pageName;
             elements.page.innerHTML = `${PAGES[pageName].content}${getCommandFooter()}`;
             document.querySelector('.terminal-body').scrollTop = 0;
+            if (pageName === 'home')  titleTyperCleanup = startTitleTyper();
+            if (pageName === 'about') animateSkillBars();
         } else {
             print(`<span class="text-error">Page not found: ${escapeHtml(pageName)}</span>`);
         }
