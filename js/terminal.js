@@ -295,7 +295,7 @@
                 const fill  = '█'.repeat(filled);
                 const empty = '░'.repeat(max - filled);
                 const pct   = Math.round((filled / max) * 100);
-                bar.innerHTML = `<span style="-webkit-text-fill-color:var(--text-color);color:var(--text-color)">${label}</span>  [${fill}${empty}] ${pct}`;
+                bar.innerHTML = `<span style="-webkit-text-fill-color:var(--text-color);color:var(--text-color)">${label}</span>  [${fill}${empty}]`;
             }
 
             // Start each bar staggered by 120ms

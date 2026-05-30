@@ -47,21 +47,22 @@ I’m a developer focused on simplifying workflows and removing friction from ev
 This site is a running log of experiments, projects, and the ongoing process of getting better at building things that work.
 
 <span class="section-header">Skills</span>
-  <span class="text-warning">Languages</span>
+  <span class="text-warning">Core Competencies</span>
   <span class="skill-bar" data-label="JavaScript" data-value="22" data-max="24"></span>
-  <span class="skill-bar" data-label="Python    " data-value="18" data-max="24"></span>
-  <span class="skill-bar" data-label="TypeScript" data-value="16" data-max="24"></span>
-  <span class="skill-bar" data-label="HTML/CSS  " data-value="14" data-max="24"></span>
-
-  <span class="text-warning">Frameworks</span>
-  <span class="skill-bar" data-label="React     " data-value="17" data-max="24"></span>
+  <span class="skill-bar" data-label="Python    " data-value="20" data-max="24"></span>
   <span class="skill-bar" data-label="Node.js   " data-value="19" data-max="24"></span>
-  <span class="skill-bar" data-label="Express   " data-value="18" data-max="24"></span>
-
-  <span class="text-warning">Tools</span>
-  <span class="skill-bar" data-label="Git       " data-value="20" data-max="24"></span>
-  <span class="skill-bar" data-label="Docker    " data-value="16" data-max="24"></span>
+  <span class="skill-bar" data-label="Git       " data-value="21" data-max="24"></span>
   <span class="skill-bar" data-label="PostgreSQL" data-value="18" data-max="24"></span>
+  <span class="skill-bar" data-label="HTML/CSS  " data-value="17" data-max="24"></span>
+
+  <span class="text-warning">In Development</span>
+  <span class="skill-bar" data-label="TypeScript" data-value="14" data-max="24"></span>
+  <span class="skill-bar" data-label="React     " data-value="13" data-max="24"></span>
+  <span class="skill-bar" data-label="Express   " data-value="15" data-max="24"></span>
+  <span class="skill-bar" data-label="Docker    " data-value="11" data-max="24"></span>
+
+  <span class="text-warning">Targeting</span>
+  <span class="text-muted">  ○ Rust  ○ Go  ○ Kubernetes</span>
 
 <span class="text-muted">Type 'work' to see my work or 'contact' to get in touch.</span>
 `
@@ -72,9 +73,9 @@ This site is a running log of experiments, projects, and the ongoing process of 
 <span class="section-header">Work</span>
 
 <div class="project-item">
-  <span class="project-title">Project One</span>
-  <div class="project-desc">A brief description of your first project. Explain what it does and what problem it solves.</div>
-  <span class="project-tech">[JavaScript, React, Node.js]</span>
+  <span class="project-title">Account Verification Automation</span>
+  <div class="project-desc">Automated a manual account verification workflow, reducing processing time from 5–10 minutes to ~10 seconds per request. Navigates a web-based partner management portal, authenticates users, validates required account settings, and generates consistent results without manual intervention. Originally a CLI utility, later expanded into a GUI application for team-wide adoption using Tkinter. Browser automation was used because the workflow was only accessible through the web interface with no direct API available.</div>
+  <span class="project-tech">[Python, Playwright, Tkinter]</span>
   <div><a href="https://github.com/yourusername/project1" target="_blank" class="terminal-link">→ View on GitHub</a></div>
 </div>
 

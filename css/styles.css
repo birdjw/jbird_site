@@ -222,7 +222,7 @@ html, body {
     color: var(--success-color);
     white-space: pre;
     font-family: var(--font-mono);
-    margin: 2px 0;
+    margin: 0;
 }
 
 .skill-bar.skill-bar-done {
