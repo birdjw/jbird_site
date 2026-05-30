@@ -80,9 +80,9 @@ This site is a running log of experiments, projects, and the ongoing process of 
 </div>
 
 <div class="project-item">
-  <span class="project-title">Project Two</span>
-  <div class="project-desc">Another amazing project you've built. Highlight the key features and technologies used.</div>
-  <span class="project-tech">[Python, Flask, PostgreSQL]</span>
+  <span class="project-title">Modem Management Tool</span>
+  <div class="project-desc">Designed and implemented an internal tool that automated cellular modem regrading through direct integration with carrier APIs. Replaced a manual workflow requiring analysts to navigate vendor web portals and perform device updates by hand. By leveraging RESTful API calls to execute regrade operations programmatically, the solution reduced processing times from 10–15 minutes to seconds while improving consistency and scalability.</div>
+  <span class="project-tech">[Python, REST APIs]</span>
   <div><a href="https://github.com/yourusername/project2" target="_blank" class="terminal-link">→ View on GitHub</a></div>
 </div>
 

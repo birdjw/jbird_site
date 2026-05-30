@@ -328,9 +328,12 @@
     const TITLES = [
         'First of His Name,',
         'Automator of Repetitive Tasks,',
-        'Keeper of the Sacred (API) Keys,',
+        'Keeper of the Sacred Keys,',
         'Warden of the Workflows'
     ];
+
+    const NEON_TITLE_INDEX = 2;
+    const NEON_TITLE_FULL  = 'Keeper of the Sacred (API) Keys,';
 
     let titleTyperCleanup = null;
 
@@ -356,16 +359,21 @@
                 titleEl.textContent = current.slice(0, charIndex);
 
                 if (charIndex === current.length) {
-                    titleEl.classList.add('title-glitch');
-                    setTimeout(() => { if (!destroyed) titleEl.classList.remove('title-glitch'); }, 550);
-                    isDeleting = true;
-                    timer = setTimeout(titleTick, 2800);
+                    if (titleIndex === NEON_TITLE_INDEX) {
+                        timer = setTimeout(runNeonEffect, 400);
+                    } else {
+                        titleEl.classList.add('title-glitch');
+                        setTimeout(() => { if (!destroyed) titleEl.classList.remove('title-glitch'); }, 550);
+                        isDeleting = true;
+                        timer = setTimeout(titleTick, 2800);
+                    }
                 } else {
                     timer = setTimeout(titleTick, 42 + Math.random() * 28);
                 }
             } else {
+                const deleteText = (titleIndex === NEON_TITLE_INDEX) ? NEON_TITLE_FULL : current;
                 charIndex--;
-                titleEl.textContent = current.slice(0, charIndex);
+                titleEl.textContent = deleteText.slice(0, charIndex);
 
                 if (charIndex === 0) {
                     isDeleting = false;
@@ -375,6 +383,19 @@
                     timer = setTimeout(titleTick, 20 + Math.random() * 12);
                 }
             }
+        }
+
+        function runNeonEffect() {
+            if (destroyed) return;
+            titleEl.innerHTML = 'Keeper of the Sacred <span class="neon-api">(API) </span>Keys,';
+            timer = setTimeout(() => {
+                if (destroyed) return;
+                titleEl.classList.add('title-glitch');
+                setTimeout(() => { if (!destroyed) titleEl.classList.remove('title-glitch'); }, 550);
+                isDeleting = true;
+                charIndex = NEON_TITLE_FULL.length;
+                timer = setTimeout(titleTick, 2200);
+            }, 2800);
         }
 
         // Phase 2: scan-line reveal of the logo, then start titles

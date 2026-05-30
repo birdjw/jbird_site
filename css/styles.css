@@ -257,6 +257,31 @@ html, body {
     100% { text-shadow: none; transform: none; }
 }
 
+@keyframes neonSlideIn {
+    /* Phase 1: width slides open, text invisible */
+    0%   { max-width: 0;    opacity: 0; text-shadow: none; }
+    20%  { max-width: 4em;  opacity: 0; text-shadow: none; }
+    /* Phase 2: struggling bulb — quick bright bursts */
+    24%  { opacity: 1;   text-shadow: 0 0 10px #a0f0b0, 0 0 22px #39d353; }
+    27%  { opacity: 0;   text-shadow: none; }
+    30%  { opacity: 1;   text-shadow: 0 0 12px #a0f0b0, 0 0 26px #39d353; }
+    33%  { opacity: 0;   text-shadow: none; }
+    36%  { opacity: 1;   text-shadow: 0 0 10px #a0f0b0, 0 0 20px #39d353; }
+    39%  { opacity: 0;   text-shadow: none; }
+    /* Phase 3: catches and settles */
+    43%  { opacity: 1;   text-shadow: 0 0 12px #a0f0b0, 0 0 20px #39d353; }
+    55%  { opacity: 0.85; text-shadow: 0 0 6px #a0f0b0; }
+    100% { max-width: 4em; opacity: 1; text-shadow: 0 0 4px #a0f0b0; }
+}
+
+.neon-api {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    -webkit-text-fill-color: #a0f0b0;
+    animation: neonSlideIn 2.6s forwards;
+}
+
 .section-header {
     color: var(--success-color);
     border-bottom: 1px dashed var(--border-color);
