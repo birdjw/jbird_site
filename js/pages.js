@@ -40,11 +40,20 @@ const PAGES = {
   <span class="info-value">Grand Rapids, MI</span>
 </div>
 
-<span class="section-header">Bio</span>
 
-I’m a developer focused on simplifying workflows and removing friction from everyday tasks. From automation scripts to backend services, I enjoy designing software that replaces repetitive effort with reliable logic.
+I'm Josh.
 
-This site is a running log of experiments, projects, and the ongoing process of getting better at building things that work.
+I build software, automate workflows, and spend most of the day thinking, "There has to be a better way to do this."
+
+Before I was writing code, I was serving in the United States Air Force as a Paralegal in the Judge Advocate General's Corps. My work focused on the administrative side of military justice and civil law matters, where I learned an important lesson that still shapes how I approach problems today: Do it right the first time, or you'll be doing it again... and again... and again.
+
+After leaving the Air Force with an honorable discharge in 2016, I enrolled at Arizona State University and earned a Bachelor of Science in Graphic Information Technology. The program had a strong front-end focus, covering web development, user experience, design principles, and digital media. It gave me an appreciation for building things that not only work, but are intuitive and enjoyable to use.
+
+After graduating in 2020, I joined W.W. Grainger as a Technical Support Specialist. Working in a technical operations environment exposed me to countless opportunities for automation, and I quickly found myself more interested in building solutions than working around limitations. What started as small scripts and process improvements evolved into a serious interest in back-end development, software engineering, APIs, and system integration.
+
+Today, I spend much of my time building tools that eliminate manual work, connect systems, and help teams move faster. I'm particularly interested in automation, back-end services, AI-assisted development, and finding creative ways to solve practical business problems.
+
+When I'm not building something, I'm usually learning a new technology, experimenting with AI tools, or working on personal projects that probably started with the words, "It would be cool if..."
 
 <span class="section-header">Skills</span>
   <span class="text-warning">Core Competencies</span>
