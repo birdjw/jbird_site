@@ -217,24 +217,67 @@ html, body {
         logoGlitch 6s 1.6s infinite;
 }
 
-.skill-bar {
-    display: block;
-    color: var(--success-color);
-    white-space: pre;
+/* ========================================
+   Skill Badges
+   ======================================== */
+
+.skill-section {
+    margin: 8px 0 12px 0;
+}
+
+.skill-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 6px;
+    padding-left: 2px;
+}
+
+.skill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 11px;
+    border-radius: 4px;
+    border: 1px solid;
+    font-size: 13px;
     font-family: var(--font-mono);
-    margin: 0;
+    line-height: 1.4;
+    cursor: default;
+    opacity: 0;
+    transform: translateY(6px) scale(0.96);
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.skill-bar.skill-bar-done {
-    animation: skillGlitch 0.4s forwards;
+.skill-badge.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
 
-@keyframes skillGlitch {
-    0%   { filter: none; }
-    20%  { filter: brightness(3) saturate(0.2); }
-    45%  { filter: brightness(1.5) hue-rotate(20deg); }
-    70%  { filter: brightness(0.9) saturate(1.8); }
-    100% { filter: none; }
+.skill-badge i {
+    font-size: 14px;
+    color: inherit;
+}
+
+/* Core Competencies — green (mastered) */
+.badge-core .skill-badge {
+    color: #3fb950;
+    background-color: rgba(63, 185, 80, 0.1);
+    border-color: rgba(63, 185, 80, 0.35);
+}
+
+/* Skills in Development — blue (active) */
+.badge-developing .skill-badge {
+    color: #58a6ff;
+    background-color: rgba(88, 166, 255, 0.1);
+    border-color: rgba(88, 166, 255, 0.35);
+}
+
+/* Targeted Skills — purple (future) */
+.badge-targeted .skill-badge {
+    color: #a371f7;
+    background-color: rgba(163, 113, 247, 0.1);
+    border-color: rgba(163, 113, 247, 0.35);
 }
 
 .title-typer {

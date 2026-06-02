@@ -278,44 +278,14 @@
     };
 
     // ========================================
-    // Skill Bar Animator
+    // Skill Badge Animator
     // ========================================
 
-    function animateSkillBars() {
-        const bars = document.querySelectorAll('.skill-bar');
-        if (!bars.length) return;
-
-        bars.forEach((bar, barIdx) => {
-            const label = bar.dataset.label;
-            const target = parseInt(bar.dataset.value, 10);
-            const max    = parseInt(bar.dataset.max,   10);
-            let filled = 0;
-
-            function render(done) {
-                const fill  = '█'.repeat(filled);
-                const empty = '░'.repeat(max - filled);
-                const pct   = Math.round((filled / max) * 100);
-                bar.innerHTML = `<span style="-webkit-text-fill-color:var(--text-color);color:var(--text-color)">${label}</span>  [${fill}${empty}]`;
-            }
-
-            // Start each bar staggered by 120ms
-            const startDelay = barIdx * 120;
-            // Each tick fills one block; speed increases slightly as bar fills
-            function tick() {
-                if (filled < target) {
-                    filled++;
-                    render();
-                    setTimeout(tick, 55 + Math.random() * 25);
-                } else {
-                    render();
-                    // brief glitch flash on completion
-                    bar.classList.add('skill-bar-done');
-                    setTimeout(() => bar.classList.remove('skill-bar-done'), 400);
-                }
-            }
-
-            render(); // show empty state immediately
-            setTimeout(tick, startDelay);
+    function animateSkillBadges() {
+        const badges = document.querySelectorAll('.skill-badge');
+        if (!badges.length) return;
+        badges.forEach((badge, i) => {
+            setTimeout(() => badge.classList.add('visible'), i * 55);
         });
     }
 
@@ -482,7 +452,7 @@
             elements.page.innerHTML = `${PAGES[pageName].content}${getCommandFooter()}`;
             document.querySelector('.terminal-body').scrollTop = 0;
             if (pageName === 'home')  titleTyperCleanup = startTitleTyper();
-            if (pageName === 'about') animateSkillBars();
+            if (pageName === 'about') animateSkillBadges();
         } else {
             print(`<span class="text-error">Page not found: ${escapeHtml(pageName)}</span>`);
         }

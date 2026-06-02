@@ -56,22 +56,35 @@ Today, I spend much of my time building tools that eliminate manual work, connec
 When I'm not building something, I'm usually learning a new technology, experimenting with AI tools, or working on personal projects that probably started with the words, "It would be cool if..."
 
 <span class="section-header">Skills</span>
-  <span class="text-warning">Core Competencies</span>
-  <span class="skill-bar" data-label="JavaScript" data-value="22" data-max="24"></span>
-  <span class="skill-bar" data-label="Python    " data-value="20" data-max="24"></span>
-  <span class="skill-bar" data-label="Node.js   " data-value="19" data-max="24"></span>
-  <span class="skill-bar" data-label="Git       " data-value="21" data-max="24"></span>
-  <span class="skill-bar" data-label="PostgreSQL" data-value="18" data-max="24"></span>
-  <span class="skill-bar" data-label="HTML/CSS  " data-value="17" data-max="24"></span>
-
-  <span class="text-warning">In Development</span>
-  <span class="skill-bar" data-label="TypeScript" data-value="14" data-max="24"></span>
-  <span class="skill-bar" data-label="React     " data-value="13" data-max="24"></span>
-  <span class="skill-bar" data-label="Express   " data-value="15" data-max="24"></span>
-  <span class="skill-bar" data-label="Docker    " data-value="11" data-max="24"></span>
-
-  <span class="text-warning">Targeting</span>
-  <span class="text-muted">  ○ Rust  ○ Go  ○ Kubernetes</span>
+<div class="skill-section">
+  <div><span class="text-warning">Core Competencies</span> <span class="text-muted">— What I do well now</span></div>
+  <div class="skill-badges badge-core">
+    <span class="skill-badge"><i class="devicon-python-plain"></i> Python</span>
+    <span class="skill-badge"><i class="devicon-git-plain"></i> Git</span>
+    <span class="skill-badge"><i class="devicon-linux-plain"></i> Linux / Bash</span>
+    <span class="skill-badge">⇌ REST APIs</span>
+    <span class="skill-badge"><i class="devicon-postgresql-plain"></i> SQL</span>
+    <span class="skill-badge"><i class="devicon-javascript-plain"></i> JavaScript</span>
+    <span class="skill-badge"><i class="devicon-html5-plain"></i> HTML / CSS</span>
+  </div>
+</div>
+<div class="skill-section">
+  <div><span class="text-warning">Skills in Development</span> <span class="text-muted">— What I am actively learning</span></div>
+  <div class="skill-badges badge-developing">
+    <span class="skill-badge"><i class="devicon-typescript-plain"></i> TypeScript</span>
+    <span class="skill-badge"><i class="devicon-react-original"></i> React</span>
+    <span class="skill-badge"><i class="devicon-docker-plain"></i> Docker</span>
+    <span class="skill-badge">⚙ CI/CD</span>
+  </div>
+</div>
+<div class="skill-section">
+  <div><span class="text-warning">Targeted Skills</span> <span class="text-muted">— What's up next</span></div>
+  <div class="skill-badges badge-targeted">
+    <span class="skill-badge"><i class="devicon-go-plain"></i> Go</span>
+    <span class="skill-badge"><i class="devicon-rust-plain"></i> Rust</span>
+    <span class="skill-badge"><i class="devicon-kubernetes-plain"></i> Kubernetes</span>
+  </div>
+</div>
 
 <span class="text-muted">Type 'work' to see my work or 'contact' to get in touch.</span>
 `
