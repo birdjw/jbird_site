@@ -398,22 +398,52 @@
             }, 2800);
         }
 
-        // Phase 2: scan-line reveal of the logo, then start titles
+        // Phase 2: scroll unroll reveal of the logo, then start titles
         function showLogo() {
             if (destroyed) return;
             logoBodyEl.style.display = 'inline';
 
-            const linesEl = logoBodyEl.querySelector('.logo-lines');
+            const linesEl     = logoBodyEl.querySelector('.logo-lines');
             const titleLineEl = logoBodyEl.querySelector('.title-line');
-            const lines = ASCII_LOGO.split('\n');
-            let lineIdx = 0;
+            const asciiLines  = ASCII_LOGO.split('\n');
 
-            function nextLine() {
+            // Scroll structural pieces — widths satisfy:
+            //   L_BAR(6) + w + R_BAR(5) = L_CAP(8) + (w-4) + R_CAP(7)  ✓
+            const FULL   = 59;  // paper width when fully unrolled
+            const PAD    = 1;   // leading spaces before ASCII art on paper
+            const L_CAP  = ' (‾‾‾)';
+            const R_CAP  = '    (‾‾‾)';
+            const L_BTM  = ' (___)';
+            const R_BTM  = '    (___)';
+            const L_BAR  = ' |   |';
+            const R_BAR  = '|   |';
+            const L_BBAR = ' |---|';
+            const R_BBAR = '|---|';
+
+            function buildScrollFrame(w) {
+                w = Math.min(w, FULL);
+                const spaces   = Math.max(0, w - 4);
+                const topRow   = L_CAP + ' '.repeat(spaces) + (w >= 4 ? R_CAP : '');
+                const botRow   = L_BTM + ' '.repeat(spaces) + (w >= 4 ? R_BTM : '');
+                const topSep   = L_BBAR + '~'.repeat(w) + R_BBAR;
+                const botSep   = L_BBAR + '~'.repeat(w) + R_BBAR;
+                const contents = asciiLines.map(line => {
+                    const vis  = Math.max(0, Math.min(line.length, w - PAD));
+                    const fill = ' '.repeat(Math.max(0, w - PAD - vis));
+                    return L_BAR + ' '.repeat(PAD) + line.slice(0, vis) + fill + R_BAR;
+                });
+                return '\n' + [topRow, topSep, ...contents, botSep, botRow].join('\n');
+            }
+
+            const steps = [4, 8, 13, 18, 23, 28, 33, 38, 43, 48, 53, 57, FULL];
+            let stepIdx = 0;
+
+            function nextStep() {
                 if (destroyed) return;
-                if (lineIdx < lines.length) {
-                    linesEl.textContent += '\n' + lines[lineIdx];
-                    lineIdx++;
-                    timer = setTimeout(nextLine, 65);
+                linesEl.textContent = buildScrollFrame(steps[stepIdx]);
+                stepIdx++;
+                if (stepIdx < steps.length) {
+                    timer = setTimeout(nextStep, 95);
                 } else {
                     titleLineEl.style.display = 'inline';
                     charIndex = 0;
@@ -421,7 +451,7 @@
                 }
             }
 
-            nextLine();
+            nextStep();
         }
 
         // Phase 1: type out the chronicle line

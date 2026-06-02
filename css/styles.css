@@ -211,7 +211,7 @@ html, body {
     display: block;
     width: fit-content;
     margin: 0 auto 10px;
-    font-size: min(calc((100vw - 40px) / 36), 26px);
+    font-size: min(calc((100vw - 40px) / 46), 20px);
     animation:
         logoSweep 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards,
         logoGlitch 6s 1.6s infinite;
