@@ -280,10 +280,21 @@ html, body {
     border-color: rgba(163, 113, 247, 0.35);
 }
 
+.chronicle-typer {
+    font-size: 1.15em;
+}
+
+.title-line {
+    position: relative;
+    left: 0ch;
+    -webkit-text-fill-color: #8b949e;
+    color: #8b949e;
+}
+
 .title-typer {
     -webkit-text-fill-color: #a0f0b0;
     color: #a0f0b0;
-    font-size: 0.82em;
+    font-size: 1.15em;
 }
 
 .title-typer.title-glitch {

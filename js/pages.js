@@ -43,7 +43,7 @@ const PAGES = {
 
 I'm Josh.
 
-I build software, automate workflows, and spend most of the day thinking, "There has to be a better way to do this."
+I build software, automate workflows, and spend probably too much of my days thinking, "There has to be a better way to do this."
 
 Before I was writing code, I was serving in the United States Air Force as a Paralegal in the Judge Advocate General's Corps. My work focused on the administrative side of military justice and civil law matters, where I learned an important lesson that still shapes how I approach problems today: Do it right the first time, or you'll be doing it again... and again... and again.
 
