@@ -55,7 +55,6 @@ Today, I spend much of my time building tools that eliminate manual work, connec
 
 When I'm not building something, I'm usually learning a new technology, experimenting with AI tools, or working on personal projects that probably started with the words, "It would be cool if..."
 
-<span class="section-header">Skills</span>
 <div class="skill-section">
   <div><span class="text-warning">Core Competencies</span> <span class="text-muted">— What I do well now</span></div>
   <div class="skill-badges badge-core">
@@ -66,6 +65,7 @@ When I'm not building something, I'm usually learning a new technology, experime
     <span class="skill-badge"><i class="devicon-postgresql-plain"></i> SQL</span>
     <span class="skill-badge"><i class="devicon-javascript-plain"></i> JavaScript</span>
     <span class="skill-badge"><i class="devicon-html5-plain"></i> HTML / CSS</span>
+    <span class="skill-badge">✦ Generative AI</span>
   </div>
 </div>
 <div class="skill-section">
