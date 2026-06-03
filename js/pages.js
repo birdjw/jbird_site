@@ -108,6 +108,20 @@ When I'm not building something, I'm usually learning a new technology, experime
   <span class="project-internal" data-tooltip="Source code is not publicly available — built for internal company use">🔒 Internal (source private)</span>
 </div>
 
+<div class="project-item">
+  <span class="project-title">Baby's First AI Agent</span>
+  <div class="project-desc">A Python-based AI coding agent built as a learning exercise to gain hands-on experience with LLM integration, function calling, and agentic workflows. This project implements an AI-powered coding assistant that can interact with a local filesystem through natural language commands. It uses Google's Gemini 2.0 Flash model with function calling capabilities to enable the AI to autonomously execute tasks like reading files, running Python scripts, and writing code.</div>
+  <span class="project-tech">[Python, LLM APIs]</span>
+  <a href="https://github.com/birdjw/bd_agent" target="_blank" class="project-github">⎇ github.com/birdjw/bd_agent</a>
+</div>
+
+<div class="project-item">
+  <span class="project-title">Pygame Asteroids</span>
+  <div class="project-desc">A recreation of the classic Atari Asteroids game built with Python and Pygame. Pilot a spaceship through an asteroid field, splitting and destroying rocks while surviving as long as possible. Built to practice multi-file project structure, OOP design patterns, vector math, collision detection, and game loop architecture using a real-world external library.</div>
+  <span class="project-tech">[Python, Pygame]</span>
+  <a href="https://github.com/birdjw/bd_asteroids" target="_blank" class="project-github">⎇ github.com/birdjw/bd_asteroids</a>
+</div>
+
 
 <span class="text-muted">Type 'about' to learn more about me or 'contact' to connect.</span>
 `
@@ -121,23 +135,19 @@ When I'm not building something, I'm usually learning a new technology, experime
 
 <div class="contact-item">
   <span class="contact-label">Email:</span>
-  <a href="mailto:your.email@example.com" class="terminal-link">your.email@example.com</a>
+  <a href="mailto:joshuawaynebird@gmail.com" class="terminal-link">joshuawaynebird@gmail.com</a>
 </div>
 
 <div class="contact-item">
   <span class="contact-label">GitHub:</span>
-  <a href="https://github.com/yourusername" target="_blank" class="terminal-link">github.com/yourusername</a>
+  <a href="https://github.com/birdjw" target="_blank" class="terminal-link">github.com/birdjw</a>
 </div>
 
 <div class="contact-item">
   <span class="contact-label">LinkedIn:</span>
-  <a href="https://linkedin.com/in/yourusername" target="_blank" class="terminal-link">linkedin.com/in/yourusername</a>
+  <a href="https://linkedin.com/in/birdjw" target="_blank" class="terminal-link">linkedin.com/in/birdjw</a>
 </div>
 
-<div class="contact-item">
-  <span class="contact-label">Twitter:</span>
-  <a href="https://twitter.com/yourusername" target="_blank" class="terminal-link">@yourusername</a>
-</div>
 
 <span class="text-success mt-2">
 I'm always open to discussing new projects, creative ideas,
