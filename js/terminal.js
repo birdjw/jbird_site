@@ -329,6 +329,10 @@
                 titleEl.textContent = current.slice(0, charIndex);
 
                 if (charIndex === current.length) {
+                    if (titleIndex === 0) {
+                        const welcome = document.querySelector('.home-welcome');
+                        if (welcome) welcome.classList.add('visible');
+                    }
                     if (titleIndex === NEON_TITLE_INDEX) {
                         timer = setTimeout(runNeonEffect, 400);
                     } else {

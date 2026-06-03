@@ -19,7 +19,7 @@ const PAGES = {
 <pre class="ascii-art">         <span class="chronicle-typer"></span><span class="logo-body" style="display:none"><span class="logo-lines"></span><span class="title-line" style="display:none">
                               // <span class="title-typer"></span></span></span></pre>
 
-<span class="text-muted">Hail, and well met! I welcome you to explore more about who I am and what I've been up to. If there is anything I can do for you, contact me! I'd be excited to discuss.</span>
+<div class="home-welcome text-muted">Hail, and well met! I welcome you to explore more about who I am and what I've been up to. If there is anything I can do for you, contact me! I'd be excited to discuss.</div>
 `
     },
     
@@ -98,22 +98,16 @@ When I'm not building something, I'm usually learning a new technology, experime
   <span class="project-title">Account Verification Automation</span>
   <div class="project-desc">Automated a manual account verification workflow, reducing processing time from 5–10 minutes to ~10 seconds per request. Navigates a web-based partner management portal, authenticates users, validates required account settings, and generates consistent results without manual intervention. Originally a CLI utility, later expanded into a GUI application for team-wide adoption using Tkinter. Browser automation was used because the workflow was only accessible through the web interface with no direct API available.</div>
   <span class="project-tech">[Python, Playwright, Tkinter]</span>
-  <div><a href="https://github.com/yourusername/project1" target="_blank" class="terminal-link">→ View on GitHub</a></div>
+  <span class="project-internal" data-tooltip="Source code is not publicly available — built for internal company use">🔒 Internal (source private)</span>
 </div>
 
 <div class="project-item">
   <span class="project-title">Modem Management Tool</span>
   <div class="project-desc">Designed and implemented an internal tool that automated cellular modem regrading through direct integration with carrier APIs. Replaced a manual workflow requiring analysts to navigate vendor web portals and perform device updates by hand. By leveraging RESTful API calls to execute regrade operations programmatically, the solution reduced processing times from 10–15 minutes to seconds while improving consistency and scalability.</div>
   <span class="project-tech">[Python, REST APIs]</span>
-  <div><a href="https://github.com/yourusername/project2" target="_blank" class="terminal-link">→ View on GitHub</a></div>
+  <span class="project-internal" data-tooltip="Source code is not publicly available — built for internal company use">🔒 Internal (source private)</span>
 </div>
 
-<div class="project-item">
-  <span class="project-title">Project Three</span>
-  <div class="project-desc">A third project showcasing your diverse skill set. Include any notable achievements.</div>
-  <span class="project-tech">[TypeScript, Vue, MongoDB]</span>
-  <div><a href="https://github.com/yourusername/project3" target="_blank" class="terminal-link">→ View on GitHub</a></div>
-</div>
 
 <span class="text-muted">Type 'about' to learn more about me or 'contact' to connect.</span>
 `
