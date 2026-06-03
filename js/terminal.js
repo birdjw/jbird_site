@@ -87,9 +87,10 @@
                 elements.log = log;
         }
 
-        function getCommandFooter() {
+        function getCommandFooter(pending = false) {
+                const cls = pending ? ' footer-pending' : '';
                 return `
-<div class="terminal-command-footer">
+<div class="terminal-command-footer${cls}">
     <span class="section-header">Commands</span>
     <div class="terminal-command-list">
         <span class="text-accent">home</span>
@@ -307,7 +308,7 @@
 
     let titleTyperCleanup = null;
 
-    function startTitleTyper() {
+    function startTitleTyper(onReady) {
         const chronicleEl = document.querySelector('.chronicle-typer');
         const logoBodyEl  = document.querySelector('.logo-body');
         const titleEl     = document.querySelector('.title-typer');
@@ -331,7 +332,25 @@
                 if (charIndex === current.length) {
                     if (titleIndex === 0) {
                         const welcome = document.querySelector('.home-welcome');
-                        if (welcome) welcome.classList.add('visible');
+                        if (welcome) {
+                            const fullText = welcome.textContent;
+                            welcome.textContent = '';
+                            welcome.style.opacity = '1';
+                            let wIdx = 0;
+                            function typeWelcome() {
+                                if (destroyed) return;
+                                wIdx++;
+                                welcome.textContent = fullText.slice(0, wIdx);
+                                if (wIdx < fullText.length) {
+                                    timer = setTimeout(typeWelcome, 20 + Math.random() * 15);
+                                } else {
+                                    timer = setTimeout(revealCommands, 120);
+                                }
+                            }
+                            typeWelcome();
+                        } else {
+                            revealCommands();
+                        }
                     }
                     if (titleIndex === NEON_TITLE_INDEX) {
                         timer = setTimeout(runNeonEffect, 400);
@@ -357,6 +376,25 @@
                     timer = setTimeout(titleTick, 20 + Math.random() * 12);
                 }
             }
+        }
+
+        function revealCommands() {
+            if (destroyed) return;
+            const footer = document.querySelector('.terminal-command-footer');
+            if (footer) {
+                footer.classList.remove('footer-pending');
+                footer.classList.add('footer-visible');
+            }
+            const tokens = Array.from(document.querySelectorAll('.terminal-command-list span'));
+            tokens.forEach((span, i) => {
+                setTimeout(() => {
+                    if (destroyed) return;
+                    span.classList.add('cmd-visible');
+                }, i * 110);
+            });
+            setTimeout(() => {
+                if (onReady) onReady();
+            }, tokens.length * 110 + 150);
         }
 
         function runNeonEffect() {
@@ -449,13 +487,13 @@
     /**
      * Show a page's content
      */
-    function showPage(pageName) {
+    function showPage(pageName, onReady) {
         if (titleTyperCleanup) { titleTyperCleanup(); titleTyperCleanup = null; }
         if (PAGES[pageName]) {
             state.currentPage = pageName;
-            elements.page.innerHTML = `${PAGES[pageName].content}${getCommandFooter()}`;
+            elements.page.innerHTML = `${PAGES[pageName].content}${getCommandFooter(pageName === 'home')}`;
             document.querySelector('.terminal-body').scrollTop = 0;
-            if (pageName === 'home')  titleTyperCleanup = startTitleTyper();
+            if (pageName === 'home') titleTyperCleanup = startTitleTyper(onReady);
             if (pageName === 'about') animateSkillBadges();
         } else {
             print(`<span class="text-error">Page not found: ${escapeHtml(pageName)}</span>`);
@@ -649,14 +687,16 @@
     // ========================================
 
     async function bootSequence() {
-        await sleep(50);
+        await new Promise(resolve => showPage('home', resolve));
+        await sleep(150);
         print('<span class="text-muted">initializing...</span>');
         await sleep(300);
         print('<span class="text-muted">loading profile...</span>');
-        await sleep(200);
+        await sleep(250);
         print('<span class="text-muted">mounting filesystem...</span>');
         await sleep(300);
-        showPage('home');
+        const inputLine = document.querySelector('.terminal-input-line');
+        if (inputLine) inputLine.classList.add('input-visible');
         focusInput();
     }
 
@@ -667,4 +707,53 @@
         init();
     }
 
+})();
+
+// ========================================
+// CRT Noise Grain
+// ========================================
+(function initCRTNoise() {
+    const canvas = document.getElementById('crt-noise');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+        const parent = canvas.parentElement;
+        canvas.width  = parent.offsetWidth;
+        canvas.height = parent.offsetHeight;
+    }
+
+    window.addEventListener('resize', resize);
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', resize);
+    } else {
+        resize();
+    }
+
+    const FPS = 12;
+    const interval = 1000 / FPS;
+    let lastTime = 0;
+
+    function drawNoise(timestamp) {
+        requestAnimationFrame(drawNoise);
+        if (timestamp - lastTime < interval) return;
+        lastTime = timestamp;
+
+        const w = canvas.width;
+        const h = canvas.height;
+        if (!w || !h) return;
+
+        const imageData = ctx.createImageData(w, h);
+        const data = imageData.data;
+        for (let i = 0; i < data.length; i += 4) {
+            const v = (Math.random() * 255) | 0;
+            data[i]     = v;
+            data[i + 1] = v;
+            data[i + 2] = v;
+            data[i + 3] = 255;
+        }
+        ctx.putImageData(imageData, 0, 0);
+    }
+
+    requestAnimationFrame(drawNoise);
 })();

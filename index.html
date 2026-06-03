@@ -6,12 +6,17 @@
     <title>jbird ~ terminal</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap">
 </head>
 <body>
     <!-- ========================================
          Desktop: Terminal UI
          ======================================== -->
     <div class="terminal desktop-only">
+        <div class="crt-overlay" aria-hidden="true"></div>
+        <canvas id="crt-noise" aria-hidden="true"></canvas>
         <div class="terminal-header">
             <span class="terminal-title">guest@jbird:~</span>
             <nav class="terminal-nav">
