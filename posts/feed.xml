@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>jbird's blog</title>
+    <link>https://jbird.dev</link>
+    <description>Notes on automation, back-end engineering, and AI-assisted development.</description>
+    <lastBuildDate>Thu, 04 Jun 2026 23:37:37 +0000</lastBuildDate>
+    <item>
+      <title>Hello, World</title>
+      <link>https://jbird.dev/?post=hello-world</link>
+      <guid isPermaLink="true">https://jbird.dev/?post=hello-world</guid>
+      <pubDate>Thu, 04 Jun 2026 00:00:00 +0000</pubDate>
+      <description>A placeholder first post to validate the blog pipeline end-to-end.</description>
+      <category>meta</category>
+      <category>site</category>
+    </item>
+    <item>
+      <title>Low-Code Has a Problem It Wasn't Built to See Coming</title>
+      <link>https://jbird.dev/?post=byelownocode</link>
+      <guid isPermaLink="true">https://jbird.dev/?post=byelownocode</guid>
+      <pubDate>Thu, 04 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Low/no-code platforms were built for humans to wire systems together — and that assumption is now in tension with how AI actually interacts with software.</description>
+      <category>ai</category>
+      <category>automation</category>
+      <category>no-code</category>
+    </item>
+  </channel>
+</rss>

@@ -96,6 +96,7 @@
         <span class="text-accent">home</span>
         <span class="text-accent">about</span>
         <span class="text-accent">work</span>
+        <span class="text-accent">blog</span>
         <span class="text-accent">contact</span>
         <span class="text-accent">help</span>
         <span class="text-accent">clear</span>
@@ -167,6 +168,29 @@
         work: () => showPage('work'),
         contact: () => showPage('contact'),
         help: () => showPage('help'),
+
+        blog: () => {
+            showPage('blog');
+            if (window.blog) window.blog.list();
+        },
+
+        read: (args) => {
+            if (!window.blog) {
+                print('<span class="text-error">Blog module not loaded.</span>');
+                return;
+            }
+            const arg = (args[0] || '').trim();
+            if (!arg) {
+                print('<span class="text-error">Usage: read &lt;slug-or-index&gt;</span>');
+                return;
+            }
+            showPage('blog');
+            if (/^\d+$/.test(arg)) {
+                window.blog.readByIndex(parseInt(arg, 10));
+            } else {
+                window.blog.read(arg);
+            }
+        },
         
         clear: () => {
             clearTerminal();
@@ -396,7 +420,7 @@
     // ========================================
     
     const availableCommands = [
-        'home', 'about', 'work', 'contact', 'help', 'clear',
+        'home', 'about', 'work', 'blog', 'read', 'contact', 'help', 'clear',
         'history', 'whoami', 'date', 'echo', 'ls', 'pwd', 'cat'
     ];
 
@@ -517,7 +541,7 @@
             }
         });
         
-        // Boot sequence then show home page
+        // Boot sequence then show home page (or deep-link target)
         bootSequence();
         
         // Handle visibility change (refocus on tab return)
@@ -533,7 +557,27 @@
     // ========================================
 
     async function bootSequence() {
-        await new Promise(resolve => showPage('home', resolve));
+        const params = new URLSearchParams(window.location.search);
+        const deepPost = params.get('post');
+        const deepTag  = params.get('tag');
+        const deepQ    = params.get('q');
+        const hasDeepLink = !!(deepPost || deepTag || deepQ);
+
+        if (hasDeepLink) {
+            showPage('blog');
+            if (window.blog) {
+                if (deepPost) {
+                    window.blog.read(deepPost);
+                } else {
+                    window.blog.list({
+                        tags: deepTag ? deepTag.split(',').filter(Boolean) : [],
+                        q: deepQ || ''
+                    });
+                }
+            }
+        } else {
+            await new Promise(resolve => showPage('home', resolve));
+        }
         await sleep(150);
         print('<span class="text-muted">initializing...</span>');
         await sleep(300);

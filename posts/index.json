@@ -1,0 +1,31 @@
+{
+  "posts": [
+    {
+      "slug": "hello-world",
+      "title": "Hello, World",
+      "date": "2026-06-04",
+      "summary": "A placeholder first post to validate the blog pipeline end-to-end.",
+      "tags": [
+        "meta",
+        "site"
+      ],
+      "wordCount": 183,
+      "readingMinutes": 1,
+      "file": "posts/2026-06-04-hello-world.md"
+    },
+    {
+      "slug": "byelownocode",
+      "title": "Low-Code Has a Problem It Wasn't Built to See Coming",
+      "date": "2026-06-04",
+      "summary": "Low/no-code platforms were built for humans to wire systems together — and that assumption is now in tension with how AI actually interacts with software.",
+      "tags": [
+        "ai",
+        "automation",
+        "no-code"
+      ],
+      "wordCount": 956,
+      "readingMinutes": 5,
+      "file": "posts/2026-06-04-byelownocode.md"
+    }
+  ]
+}

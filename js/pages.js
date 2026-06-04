@@ -187,6 +187,10 @@ or opportunities to be part of your vision!</span>
 `
     },
     
+    blog: {
+        content: `<div id="blog-root"><span class="text-muted">loading blog…</span></div>`
+    },
+
     help: {
         content: `
 <span class="section-header">Available Commands</span>
@@ -195,6 +199,8 @@ or opportunities to be part of your vision!</span>
   home        Return to the home page
   about       Learn about me
   work        View my portfolio
+  blog        Read the blog
+  read [slug] Open a post by slug or index (e.g. 'read 1')
   contact     Get my contact info
 
 <span class="text-accent">Utility</span>
@@ -217,6 +223,8 @@ const COMMAND_ALIASES = {
     'h': 'home',
     'a': 'about',
     'w': 'work',
+    'b': 'blog',
+    'r': 'read',
     'c': 'contact',
     '?': 'help',
     'cls': 'clear'

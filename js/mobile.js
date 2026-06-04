@@ -31,7 +31,25 @@
             mobileLandscape.style.display = 'flex';
             if (!landscapeActivated) {
                 landscapeActivated = true;
-                renderPage('home');
+                const params = new URLSearchParams(window.location.search);
+                const deepPost = params.get('post');
+                const deepTag  = params.get('tag');
+                const deepQ    = params.get('q');
+                if (deepPost) {
+                    renderPage('blog');
+                    if (window.blog) window.blog.read(deepPost);
+                } else if (deepTag || deepQ) {
+                    renderPage('blog');
+                    if (window.blog) {
+                        window.blog.list({
+                            tags: deepTag ? deepTag.split(',').filter(Boolean) : [],
+                            q: deepQ || ''
+                        });
+                    }
+                } else {
+                    renderPage('blog');
+                    if (window.blog) window.blog.list();
+                }
             }
         } else {
             rotatePrompt.style.display    = 'flex';
@@ -51,8 +69,8 @@
         const pageEl = document.getElementById('page-' + name);
         if (!pageEl) return;
 
-        // Always re-render home so the intro can replay; cache the rest.
-        if (name === 'home' || !pageEl.dataset.rendered) {
+        // Always re-render home + blog so they refresh; cache the rest.
+        if (name === 'home' || name === 'blog' || !pageEl.dataset.rendered) {
             pageEl.innerHTML = PAGES[name].content;
             pageEl.dataset.rendered = '1';
         }

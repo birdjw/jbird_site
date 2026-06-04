@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap">
+    <link rel="alternate" type="application/rss+xml" title="jbird's blog" href="posts/feed.xml">
 </head>
 <body>
     <!-- ========================================
@@ -23,6 +24,7 @@
                 <a href="#" class="terminal-nav-link" data-command="home">Home</a>
                 <a href="#" class="terminal-nav-link" data-command="about">About</a>
                 <a href="#" class="terminal-nav-link" data-command="work">Work</a>
+                <a href="#" class="terminal-nav-link" data-command="blog">Blog</a>
                 <a href="#" class="terminal-nav-link" data-command="contact">Contact</a>
             </nav>
         </div>
@@ -56,6 +58,7 @@
                 <section class="mobile-page active" id="page-home"></section>
                 <section class="mobile-page" id="page-about"></section>
                 <section class="mobile-page" id="page-work"></section>
+                <section class="mobile-page" id="page-blog"></section>
                 <section class="mobile-page" id="page-contact"></section>
             </main>
 
@@ -65,7 +68,7 @@
                     <span class="pad-input-mirror" id="pad-mirror"></span><span class="pad-cursor" id="pad-cursor">█</span>
                 </div>
                 <div class="pad-keys" role="group">
-                    <button type="button" class="pad-key active" data-page="home">home</button>
+                    <button type="button" class="pad-key active" data-page="blog">blog</button>
                     <button type="button" class="pad-key" data-page="about">about</button>
                     <button type="button" class="pad-key" data-page="work">work</button>
                     <button type="button" class="pad-key" data-page="contact">contact</button>
@@ -76,6 +79,7 @@
     
     <script src="js/pages.js"></script>
     <script src="js/intro.js"></script>
+    <script src="js/blog.js"></script>
     <script src="js/terminal.js"></script>
     <script src="js/mobile.js"></script>
     <script src="js/contact.js"></script>
