@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# Blog drafts (never publish accidentally)
+posts/drafts/
+
+# Python
+__pycache__/
+*.pyc
