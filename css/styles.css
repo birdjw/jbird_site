@@ -618,6 +618,183 @@ html, body {
     min-width: 100px;
 }
 
+/* ========================================
+   Contact Cards
+   ======================================== */
+
+.contact-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 16px 0;
+    position: relative;
+}
+
+.contact-card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 14px;
+    border-left: 2px solid var(--accent-color);
+    background-color: rgba(232, 160, 32, 0.04);
+    color: var(--text-color);
+    font-family: var(--font-mono);
+    text-decoration: none;
+    position: relative;
+    transition:
+        background-color 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease;
+    outline: none;
+}
+
+.contact-card:hover {
+    background-color: rgba(232, 160, 32, 0.10);
+    border-left-color: var(--success-color);
+    transform: translateX(2px);
+}
+
+.contact-card:focus-visible {
+    background-color: rgba(57, 211, 83, 0.08);
+    border-left-color: var(--success-color);
+}
+
+.contact-card:focus-visible::before {
+    content: '> ';
+    position: absolute;
+    left: -14px;
+    color: var(--success-color);
+    text-shadow: 0 0 6px var(--phosphor-glow);
+}
+
+.contact-card:focus-visible::after {
+    content: ' <';
+    position: absolute;
+    right: -2px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--success-color);
+    text-shadow: 0 0 6px var(--phosphor-glow);
+}
+
+.status-led {
+    width: 0.7em;
+    height: 0.7em;
+    border-radius: 50%;
+    background-color: var(--success-color);
+    box-shadow:
+        0 0 4px var(--success-color),
+        0 0 10px rgba(57, 211, 83, 0.7);
+    display: inline-block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .status-led {
+        animation: ledPulse 1.6s ease-in-out infinite;
+    }
+}
+
+@keyframes ledPulse {
+    0%, 100% {
+        opacity: 0.85;
+        box-shadow:
+            0 0 4px var(--success-color),
+            0 0 8px rgba(57, 211, 83, 0.5);
+    }
+    50% {
+        opacity: 1;
+        box-shadow:
+            0 0 6px var(--success-color),
+            0 0 18px rgba(57, 211, 83, 0.9);
+    }
+}
+
+.card-body {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+    min-width: 0;
+}
+
+.card-prefix {
+    color: var(--success-color);
+    font-size: 13px;
+    opacity: 0.65;
+}
+
+.card-target {
+    color: var(--accent-color);
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-action {
+    color: var(--text-muted);
+    font-size: 12px;
+    border: 1px solid rgba(77, 176, 85, 0.4);
+    padding: 2px 8px;
+    border-radius: 3px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.contact-card:hover .card-action,
+.contact-card:focus-visible .card-action {
+    color: var(--success-color);
+    border-color: var(--success-color);
+}
+
+.copy-toast {
+    position: absolute;
+    right: 14px;
+    transform: translate(8px, -50%);
+    background-color: var(--header-bg);
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
+    border-radius: 3px;
+    padding: 3px 9px;
+    font-size: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    white-space: nowrap;
+    z-index: 5;
+}
+
+.copy-toast.is-visible {
+    opacity: 1;
+    transform: translate(0, -50%);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Mobile contact cards: simpler spacing, full-width */
+.mobile-page .contact-cards {
+    margin: 12px 0;
+}
+
+.mobile-page .contact-card {
+    padding: 12px 14px;
+    font-size: 14px;
+}
+
+.mobile-page .card-prefix {
+    display: none;
+}
+
 /* Table-like formatting */
 .info-row {
     display: flex;
@@ -708,49 +885,23 @@ html, body {
     display: none;
     flex-direction: column;
     height: 100%;
-    padding: 16px 20px 12px;
+    padding: 16px 20px 0;
     box-sizing: border-box;
     overflow: hidden;
 }
 
-/* ASCII logo in mobile — scale to fit */
-.mobile-ascii {
-    font-size: clamp(5px, 1.1vw, 10px);
+/* Shrink the ASCII art for mobile (scoped so desktop is unaffected) */
+.mobile-app .ascii-art {
+    font-size: min(calc((100vw - 32px) / 64), 14px);
     line-height: 1.2;
-    margin: 0 0 10px;
-    white-space: pre;
-    overflow: hidden;
-}
-
-/* Mobile Nav */
-.mobile-nav-links {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 14px;
-    font-family: var(--font-mono);
-    font-size: 13px;
-}
-
-.mobile-nav-link {
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.mobile-nav-link:hover,
-.mobile-nav-link.active {
-    color: var(--accent-color);
-}
-
-.mobile-nav-sep {
-    color: var(--border-color);
+    margin: 0 auto;
 }
 
 /* Mobile Content */
 .mobile-content {
     flex: 1;
     overflow-y: auto;
+    min-height: 0;
 }
 
 .mobile-page {
@@ -760,6 +911,32 @@ html, body {
 
 .mobile-page.active {
     display: block;
+}
+
+/* Home page: center the intro vertically within the available area */
+.mobile-page#page-home {
+    text-align: center;
+}
+
+.mobile-page#page-home.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+}
+
+/* Bump the intro typer sizes on mobile home for legibility */
+.mobile-page#page-home .chronicle-typer,
+.mobile-page#page-home .title-typer {
+    font-size: 1.35em;
+}
+
+.mobile-page#page-home .home-welcome {
+    margin-top: 10px;
+    padding: 0 12px;
+    font-size: 13px;
+    line-height: 1.5;
 }
 
 .mobile-page .lead {
@@ -803,6 +980,98 @@ html, body {
 
 .mobile-link:hover {
     text-decoration: underline;
+}
+
+/* ========================================
+   Command Pad — bottom-docked nav
+   ======================================== */
+
+.command-pad {
+    flex-shrink: 0;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--header-bg);
+    padding: 10px 14px 12px;
+    margin: 8px -20px 0;
+}
+
+.pad-prompt {
+    display: flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.4;
+    min-height: 1.4em;
+    color: var(--text-color);
+    text-shadow:
+        0 0 8px var(--phosphor-glow),
+        0 0 2px rgba(57, 211, 83, 0.85);
+}
+
+.pad-prompt .prompt {
+    color: var(--success-color);
+    margin-right: 8px;
+    white-space: nowrap;
+}
+
+.pad-input-mirror {
+    color: var(--text-color);
+    white-space: pre;
+}
+
+.pad-cursor {
+    color: var(--success-color);
+    margin-left: 1px;
+    animation: blink 1s step-end infinite;
+}
+
+.pad-keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.pad-key {
+    min-height: 44px;
+    padding: 10px 6px;
+    background-color: var(--btn-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    cursor: pointer;
+    text-shadow:
+        0 0 8px var(--phosphor-glow),
+        0 0 2px rgba(57, 211, 83, 0.6);
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease,
+        transform 0.08s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.pad-key:hover,
+.pad-key:focus-visible {
+    color: var(--text-color);
+    border-color: var(--accent-color);
+    outline: none;
+}
+
+.pad-key.active {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    background-color: var(--btn-hover);
+}
+
+.pad-key:active {
+    transform: scale(0.97);
+}
+
+.pad-key[aria-disabled="true"] {
+    pointer-events: none;
+    opacity: 0.55;
 }
 
 @keyframes fadeIn {

@@ -1,16 +1,25 @@
+/* ========================================
+   Mobile App — Landscape intro + command-pad nav
+   ======================================== */
+
 (function () {
     if (window.innerWidth > 768) return;
 
     const rotatePrompt    = document.getElementById('rotate-prompt');
     const mobileLandscape = document.getElementById('mobile-landscape');
-    const mobileLogoEl    = document.getElementById('mobile-logo');
-    const navLinks        = document.querySelectorAll('.mobile-nav-link');
-    const pages           = document.querySelectorAll('.mobile-page');
+    const pad             = document.getElementById('command-pad');
+    const padMirror       = document.getElementById('pad-mirror');
+    const padCursor       = document.getElementById('pad-cursor');
+    const padKeys         = pad ? Array.from(pad.querySelectorAll('.pad-key')) : [];
+    const pages           = Array.from(document.querySelectorAll('.mobile-page'));
 
-    // Inject ASCII logo from pages.js
-    if (typeof ASCII_LOGO !== 'undefined') {
-        mobileLogoEl.textContent = ASCII_LOGO;
-    }
+    const reduceMotion = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let introCleanup = null;
+    let landscapeActivated = false;
+    let currentPage = null;
+    let padBusy = false;
 
     function isLandscape() {
         return window.innerWidth > window.innerHeight;
@@ -20,28 +29,109 @@
         if (isLandscape()) {
             rotatePrompt.style.display    = 'none';
             mobileLandscape.style.display = 'flex';
+            if (!landscapeActivated) {
+                landscapeActivated = true;
+                renderPage('home');
+            }
         } else {
             rotatePrompt.style.display    = 'flex';
             mobileLandscape.style.display = 'none';
         }
     }
 
-    function showPage(name) {
-        pages.forEach(function (p) { p.classList.remove('active'); });
-        navLinks.forEach(function (l) { l.classList.remove('active'); });
-
-        var page = document.getElementById('page-' + name);
-        if (page) page.classList.add('active');
-
-        navLinks.forEach(function (l) {
-            if (l.dataset.page === name) l.classList.add('active');
+    function animateSkillBadges(root) {
+        const badges = root.querySelectorAll('.skill-badge');
+        badges.forEach((badge, i) => {
+            setTimeout(() => badge.classList.add('visible'), i * 55);
         });
     }
 
-    navLinks.forEach(function (link) {
-        link.addEventListener('click', function (e) {
-            e.preventDefault();
-            showPage(this.dataset.page);
+    function renderPage(name) {
+        if (typeof PAGES === 'undefined' || !PAGES[name]) return;
+        const pageEl = document.getElementById('page-' + name);
+        if (!pageEl) return;
+
+        // Always re-render home so the intro can replay; cache the rest.
+        if (name === 'home' || !pageEl.dataset.rendered) {
+            pageEl.innerHTML = PAGES[name].content;
+            pageEl.dataset.rendered = '1';
+        }
+
+        pages.forEach(p => p.classList.remove('active'));
+        padKeys.forEach(k => k.classList.remove('active'));
+        pageEl.classList.add('active');
+        const key = padKeys.find(k => k.dataset.page === name);
+        if (key) key.classList.add('active');
+
+        // Cancel any running intro before switching pages.
+        if (introCleanup) {
+            introCleanup();
+            introCleanup = null;
+        }
+
+        if (name === 'home' && typeof window.startIntro === 'function') {
+            introCleanup = window.startIntro({ root: pageEl });
+        } else if (name === 'about') {
+            animateSkillBadges(pageEl);
+        }
+
+        currentPage = name;
+
+        document.dispatchEvent(new CustomEvent('terminal:page-rendered', {
+            detail: { page: name }
+        }));
+    }
+
+    function setPadBusy(busy) {
+        padBusy = busy;
+        padKeys.forEach(k => {
+            if (busy) {
+                k.setAttribute('aria-disabled', 'true');
+            } else {
+                k.removeAttribute('aria-disabled');
+            }
+        });
+    }
+
+    function typeCommand(name, done) {
+        if (reduceMotion) {
+            padMirror.textContent = name;
+            setTimeout(() => {
+                padMirror.textContent = '';
+                done();
+            }, 80);
+            return;
+        }
+
+        let i = 0;
+        padMirror.textContent = '';
+        function step() {
+            i++;
+            padMirror.textContent = name.slice(0, i);
+            if (i < name.length) {
+                setTimeout(step, 35 + Math.random() * 20);
+            } else {
+                padCursor.style.opacity = '1';
+                setTimeout(() => {
+                    padCursor.style.opacity = '';
+                    padMirror.textContent = '';
+                    done();
+                }, 180);
+            }
+        }
+        step();
+    }
+
+    padKeys.forEach(key => {
+        key.addEventListener('click', () => {
+            if (padBusy) return;
+            const name = key.dataset.page;
+            if (!name) return;
+            setPadBusy(true);
+            typeCommand(name, () => {
+                renderPage(name);
+                setPadBusy(false);
+            });
         });
     });
 
@@ -50,3 +140,5 @@
 
     updateOrientation();
 })();
+
+

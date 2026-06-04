@@ -129,23 +129,57 @@ When I'm not building something, I'm usually learning a new technology, experime
         content: `
 <span class="section-header">Contact</span>
 
-<span class="text-muted">Feel free to reach out through any of the following:</span>
+<span class="text-muted">Feel free to reach out &mdash; hover, tab, or click any line.</span>
 
-<div class="contact-item">
-  <span class="contact-label">Email:</span>
-  <a href="mailto:joshuawaynebird@gmail.com" class="terminal-link">joshuawaynebird@gmail.com</a>
+<div class="contact-cards" id="contact-cards" aria-label="Contact methods">
+  <a class="contact-card"
+     href="#"
+     data-channel="email"
+     data-u="joshuawaynebird"
+     data-d="gmail.com"
+     aria-label="Email address &mdash; hover to reveal, click to copy">
+    <span class="status-led" aria-hidden="true"></span>
+    <span class="card-body">
+      <span class="card-prefix">$ open mailto:</span>
+      <span class="card-target" data-target>[hover to decode]</span>
+    </span>
+    <span class="card-action" aria-hidden="true">[copy]</span>
+  </a>
+
+  <a class="contact-card"
+     href="https://github.com/birdjw"
+     target="_blank"
+     rel="noopener"
+     data-channel="github"
+     data-copy="https://github.com/birdjw"
+     aria-label="GitHub profile &mdash; github.com/birdjw, click to copy">
+    <span class="status-led" aria-hidden="true"></span>
+    <span class="card-body">
+      <span class="card-prefix">$ git clone</span>
+      <span class="card-target" data-target>github.com/birdjw</span>
+    </span>
+    <span class="card-action" aria-hidden="true">[copy]</span>
+  </a>
+
+  <a class="contact-card"
+     href="https://linkedin.com/in/birdjw"
+     target="_blank"
+     rel="noopener"
+     data-channel="linkedin"
+     data-copy="https://linkedin.com/in/birdjw"
+     aria-label="LinkedIn profile &mdash; linkedin.com/in/birdjw, click to copy">
+    <span class="status-led" aria-hidden="true"></span>
+    <span class="card-body">
+      <span class="card-prefix">$ curl -L</span>
+      <span class="card-target" data-target>linkedin.com/in/birdjw</span>
+    </span>
+    <span class="card-action" aria-hidden="true">[copy]</span>
+  </a>
+
+  <div class="copy-toast" aria-hidden="true">copied &check;</div>
 </div>
 
-<div class="contact-item">
-  <span class="contact-label">GitHub:</span>
-  <a href="https://github.com/birdjw" target="_blank" class="terminal-link">github.com/birdjw</a>
-</div>
-
-<div class="contact-item">
-  <span class="contact-label">LinkedIn:</span>
-  <a href="https://linkedin.com/in/birdjw" target="_blank" class="terminal-link">linkedin.com/in/birdjw</a>
-</div>
-
+<span class="sr-only" data-copy-announcer aria-live="polite"></span>
 
 <span class="text-success mt-2">
 I'm always open to discussing new projects, creative ideas,

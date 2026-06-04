@@ -294,194 +294,37 @@
     // Title Typewriter
     // ========================================
 
-    const CHRONICLE_TEXT = 'A Chronicle of The Deeds and Craft of';
-
-    const TITLES = [
-        'First of His Name,',
-        'Automator of Repetitive Tasks,',
-        'Keeper of the Sacred Keys,',
-        'Warden of the Workflows'
-    ];
-
-    const NEON_TITLE_INDEX = 2;
-    const NEON_TITLE_FULL  = 'Keeper of the Sacred (API) Keys,';
-
     let titleTyperCleanup = null;
 
+    /**
+     * Start the home-page intro (chronicle → scroll → title cycling).
+     * Delegates to the shared js/intro.js engine but supplies the
+     * desktop-specific revealCommands() as the completion callback.
+     */
     function startTitleTyper(onReady) {
-        const chronicleEl = document.querySelector('.chronicle-typer');
-        const logoBodyEl  = document.querySelector('.logo-body');
-        const titleEl     = document.querySelector('.title-typer');
-        if (!chronicleEl || !logoBodyEl || !titleEl) return null;
-
-        let titleIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let timer = null;
-        let destroyed = false;
-
-        // Phase 3: cycle titles
-        function titleTick() {
-            if (destroyed) return;
-            const current = TITLES[titleIndex];
-
-            if (!isDeleting) {
-                charIndex++;
-                titleEl.textContent = current.slice(0, charIndex);
-
-                if (charIndex === current.length) {
-                    if (titleIndex === 0) {
-                        const welcome = document.querySelector('.home-welcome');
-                        if (welcome) {
-                            const fullText = welcome.textContent;
-                            welcome.textContent = '';
-                            welcome.style.opacity = '1';
-                            let wIdx = 0;
-                            function typeWelcome() {
-                                if (destroyed) return;
-                                wIdx++;
-                                welcome.textContent = fullText.slice(0, wIdx);
-                                if (wIdx < fullText.length) {
-                                    timer = setTimeout(typeWelcome, 20 + Math.random() * 15);
-                                } else {
-                                    timer = setTimeout(revealCommands, 120);
-                                }
-                            }
-                            typeWelcome();
-                        } else {
-                            revealCommands();
-                        }
-                    }
-                    if (titleIndex === NEON_TITLE_INDEX) {
-                        timer = setTimeout(runNeonEffect, 400);
-                    } else {
-                        titleEl.classList.add('title-glitch');
-                        setTimeout(() => { if (!destroyed) titleEl.classList.remove('title-glitch'); }, 550);
-                        isDeleting = true;
-                        timer = setTimeout(titleTick, 2800);
-                    }
-                } else {
-                    timer = setTimeout(titleTick, 42 + Math.random() * 28);
-                }
-            } else {
-                const deleteText = (titleIndex === NEON_TITLE_INDEX) ? NEON_TITLE_FULL : current;
-                charIndex--;
-                titleEl.textContent = deleteText.slice(0, charIndex);
-
-                if (charIndex === 0) {
-                    isDeleting = false;
-                    titleIndex = (titleIndex + 1) % TITLES.length;
-                    timer = setTimeout(titleTick, 320);
-                } else {
-                    timer = setTimeout(titleTick, 20 + Math.random() * 12);
-                }
-            }
-        }
+        if (typeof window.startIntro !== 'function') return null;
 
         function revealCommands() {
-            if (destroyed) return;
-            const footer = document.querySelector('.terminal-command-footer');
+            const footer = elements.page.querySelector('.terminal-command-footer');
             if (footer) {
                 footer.classList.remove('footer-pending');
                 footer.classList.add('footer-visible');
             }
-            const tokens = Array.from(document.querySelectorAll('.terminal-command-list span'));
+            const tokens = Array.from(
+                elements.page.querySelectorAll('.terminal-command-list span')
+            );
             tokens.forEach((span, i) => {
-                setTimeout(() => {
-                    if (destroyed) return;
-                    span.classList.add('cmd-visible');
-                }, i * 110);
+                setTimeout(() => span.classList.add('cmd-visible'), i * 110);
             });
             setTimeout(() => {
                 if (onReady) onReady();
             }, tokens.length * 110 + 150);
         }
 
-        function runNeonEffect() {
-            if (destroyed) return;
-            titleEl.innerHTML = 'Keeper of the Sacred <span class="neon-api">(API) </span>Keys,';
-            timer = setTimeout(() => {
-                if (destroyed) return;
-                titleEl.classList.add('title-glitch');
-                setTimeout(() => { if (!destroyed) titleEl.classList.remove('title-glitch'); }, 550);
-                isDeleting = true;
-                charIndex = NEON_TITLE_FULL.length;
-                timer = setTimeout(titleTick, 2200);
-            }, 2800);
-        }
-
-        // Phase 2: scroll unroll reveal of the logo, then start titles
-        function showLogo() {
-            if (destroyed) return;
-            logoBodyEl.style.display = 'inline';
-
-            const linesEl     = logoBodyEl.querySelector('.logo-lines');
-            const titleLineEl = logoBodyEl.querySelector('.title-line');
-            const asciiLines  = ASCII_LOGO.split('\n');
-
-            // Scroll structural pieces — widths satisfy:
-            //   L_BAR(6) + w + R_BAR(5) = L_CAP(8) + (w-4) + R_CAP(7)  ✓
-            const FULL   = 59;  // paper width when fully unrolled
-            const PAD    = 1;   // leading spaces before ASCII art on paper
-            const L_CAP  = ' (‾‾‾)';
-            const R_CAP  = '    (‾‾‾)';
-            const L_BTM  = ' (___)';
-            const R_BTM  = '    (___)';
-            const L_BAR  = ' |   |';
-            const R_BAR  = '|   |';
-            const L_BBAR = ' |---|';
-            const R_BBAR = '|---|';
-
-            function buildScrollFrame(w) {
-                w = Math.min(w, FULL);
-                const spaces   = Math.max(0, w - 4);
-                const topRow   = L_CAP + ' '.repeat(spaces) + (w >= 4 ? R_CAP : '');
-                const botRow   = L_BTM + ' '.repeat(spaces) + (w >= 4 ? R_BTM : '');
-                const topSep   = L_BBAR + '~'.repeat(w) + R_BBAR;
-                const botSep   = L_BBAR + '~'.repeat(w) + R_BBAR;
-                const contents = asciiLines.map(line => {
-                    const vis  = Math.max(0, Math.min(line.length, w - PAD));
-                    const fill = ' '.repeat(Math.max(0, w - PAD - vis));
-                    return L_BAR + ' '.repeat(PAD) + line.slice(0, vis) + fill + R_BAR;
-                });
-                return '\n' + [topRow, topSep, ...contents, botSep, botRow].join('\n');
-            }
-
-            const steps = [4, 8, 13, 18, 23, 28, 33, 38, 43, 48, 53, 57, FULL];
-            let stepIdx = 0;
-
-            function nextStep() {
-                if (destroyed) return;
-                linesEl.textContent = buildScrollFrame(steps[stepIdx]);
-                stepIdx++;
-                if (stepIdx < steps.length) {
-                    timer = setTimeout(nextStep, 95);
-                } else {
-                    titleLineEl.style.display = 'inline';
-                    charIndex = 0;
-                    timer = setTimeout(titleTick, 500);
-                }
-            }
-
-            nextStep();
-        }
-
-        // Phase 1: type out the chronicle line
-        let chronicleIndex = 0;
-        function typeChronicle() {
-            if (destroyed) return;
-            chronicleIndex++;
-            chronicleEl.textContent = CHRONICLE_TEXT.slice(0, chronicleIndex);
-
-            if (chronicleIndex === CHRONICLE_TEXT.length) {
-                timer = setTimeout(showLogo, 500);
-            } else {
-                timer = setTimeout(typeChronicle, 42 + Math.random() * 28);
-            }
-        }
-
-        timer = setTimeout(typeChronicle, 400);
-        return function destroy() { destroyed = true; clearTimeout(timer); };
+        return window.startIntro({
+            root: elements.page,
+            onComplete: revealCommands
+        });
     }
 
     /**
@@ -495,6 +338,9 @@
             document.querySelector('.terminal-body').scrollTop = 0;
             if (pageName === 'home') titleTyperCleanup = startTitleTyper(onReady);
             if (pageName === 'about') animateSkillBadges();
+            document.dispatchEvent(new CustomEvent('terminal:page-rendered', {
+                detail: { page: pageName }
+            }));
         } else {
             print(`<span class="text-error">Page not found: ${escapeHtml(pageName)}</span>`);
         }

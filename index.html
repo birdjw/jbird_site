@@ -50,60 +50,34 @@
             <p>Please rotate your device to landscape mode</p>
         </div>
 
-        <!-- Landscape: Logo + Nav + Content -->
+        <!-- Landscape: Intro + Nav + Content -->
         <div class="mobile-landscape" id="mobile-landscape">
-            <pre class="ascii-art mobile-ascii" id="mobile-logo"></pre>
-            <nav class="mobile-nav-links">
-                <a href="#" class="mobile-nav-link active" data-page="home">home</a>
-                <span class="mobile-nav-sep">/</span>
-                <a href="#" class="mobile-nav-link" data-page="about">about</a>
-                <span class="mobile-nav-sep">/</span>
-                <a href="#" class="mobile-nav-link" data-page="work">work</a>
-                <span class="mobile-nav-sep">/</span>
-                <a href="#" class="mobile-nav-link" data-page="contact">contact</a>
-            </nav>
-
             <main class="mobile-content">
-                <section class="mobile-page active" id="page-home">
-                    <p class="lead">Hi, I'm <strong>jbird</strong> — a full-stack developer who builds things for the web.</p>
-                    <p>Explore my work and get in touch.</p>
-                </section>
-
-                <section class="mobile-page" id="page-about">
-                    <p>I'm a passionate full-stack developer looking for opportunities to improve the way we work. I'm especially motivated to build systems that simplify processes and remove friction from everyday tasks.</p>
-                    <p>Skills: JavaScript · TypeScript · Python · React · Node.js · Docker · PostgreSQL · Git</p>
-                </section>
-
-                <section class="mobile-page" id="page-work">
-                    <div class="mobile-project">
-                        <h3>Project One</h3>
-                        <p>A brief description of your first project.</p>
-                        <span class="mobile-tech">JavaScript · React · Node.js</span>
-                    </div>
-                    <div class="mobile-project">
-                        <h3>Project Two</h3>
-                        <p>Another amazing project you've built.</p>
-                        <span class="mobile-tech">Python · Flask · PostgreSQL</span>
-                    </div>
-                    <div class="mobile-project">
-                        <h3>Project Three</h3>
-                        <p>A third project showcasing your diverse skill set.</p>
-                        <span class="mobile-tech">TypeScript · Vue · MongoDB</span>
-                    </div>
-                </section>
-
-                <section class="mobile-page" id="page-contact">
-                    <p>Feel free to reach out:</p>
-                    <p><a href="mailto:your.email@example.com" class="mobile-link">your.email@example.com</a></p>
-                    <p><a href="https://github.com/yourusername" target="_blank" class="mobile-link">github.com/yourusername</a></p>
-                    <p><a href="https://linkedin.com/in/yourusername" target="_blank" class="mobile-link">linkedin.com/in/yourusername</a></p>
-                </section>
+                <section class="mobile-page active" id="page-home"></section>
+                <section class="mobile-page" id="page-about"></section>
+                <section class="mobile-page" id="page-work"></section>
+                <section class="mobile-page" id="page-contact"></section>
             </main>
+
+            <div class="command-pad" id="command-pad" aria-label="Site navigation">
+                <div class="pad-prompt">
+                    <span class="prompt">guest@jbird:~$</span>
+                    <span class="pad-input-mirror" id="pad-mirror"></span><span class="pad-cursor" id="pad-cursor">█</span>
+                </div>
+                <div class="pad-keys" role="group">
+                    <button type="button" class="pad-key active" data-page="home">home</button>
+                    <button type="button" class="pad-key" data-page="about">about</button>
+                    <button type="button" class="pad-key" data-page="work">work</button>
+                    <button type="button" class="pad-key" data-page="contact">contact</button>
+                </div>
+            </div>
         </div>
     </div>
     
     <script src="js/pages.js"></script>
+    <script src="js/intro.js"></script>
     <script src="js/terminal.js"></script>
     <script src="js/mobile.js"></script>
+    <script src="js/contact.js"></script>
 </body>
 </html>
