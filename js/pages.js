@@ -99,15 +99,6 @@ When I'm not building something, I'm usually learning a new technology, experime
   <span class="project-internal" data-tooltip="Source code is not publicly available — built for internal company use">🔒 Internal (source private)</span>
 </div>
 
-/* COMMENTED OUT
-<div class="project-item">
-  <span class="project-title">Modem Management Tool</span>
-  <div class="project-desc">Designed and implemented an internal tool that automated cellular modem regrading through direct integration with carrier APIs. Replaced a manual workflow requiring analysts to navigate vendor web portals and perform device updates by hand. By leveraging RESTful API calls to execute regrade operations programmatically, the solution reduced processing times from 10–15 minutes to seconds while improving consistency and scalability.</div>
-  <span class="project-tech">[Python, REST APIs]</span>
-  <span class="project-internal" data-tooltip="Source code is not publicly available — built for internal company use">🔒 Internal (source private)</span>
-</div>
-*/
-
 <div class="project-item">
   <span class="project-title">Baby's First AI Agent</span>
   <div class="project-desc">A Python-based AI coding agent built as a learning exercise to gain hands-on experience with LLM integration, function calling, and agentic workflows. This project implements an AI-powered coding assistant that can interact with a local filesystem through natural language commands. It uses Google's Gemini 2.0 Flash model with function calling capabilities to enable the AI to autonomously execute tasks like reading files, running Python scripts, and writing code.</div>
