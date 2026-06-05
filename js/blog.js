@@ -66,6 +66,10 @@
                     mangle: false
                 });
             }
+        }).catch(err => {
+            // Don't cache a failed load; allow a retry on the next attempt.
+            state.depsPromise = null;
+            throw err;
         });
         return state.depsPromise;
     }
@@ -83,6 +87,11 @@
             .then(data => {
                 state.manifest = (data && data.posts) || [];
                 return state.manifest;
+            })
+            .catch(err => {
+                // Don't cache a failed fetch; allow a retry on the next attempt.
+                state.manifestPromise = null;
+                throw err;
             });
         return state.manifestPromise;
     }
@@ -450,6 +459,7 @@
         try {
             await loadManifest();
         } catch (err) {
+            console.error('blog: failed to load post index', err);
             renderError('Failed to load post index.');
             return;
         }
@@ -466,6 +476,7 @@
         try {
             await loadManifest();
         } catch (err) {
+            console.error('blog: failed to load post index', err);
             renderError('Failed to load post index.');
             return;
         }

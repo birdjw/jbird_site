@@ -98,6 +98,8 @@
             introCleanup = window.startIntro({ root: pageEl });
         } else if (name === 'about') {
             animateSkillBadges(pageEl);
+        } else if (name === 'blog' && window.blog) {
+            window.blog.list();
         }
 
         currentPage = name;
