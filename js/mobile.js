@@ -12,6 +12,7 @@
     const padCursor       = document.getElementById('pad-cursor');
     const padKeys         = pad ? Array.from(pad.querySelectorAll('.pad-key')) : [];
     const pages           = Array.from(document.querySelectorAll('.mobile-page'));
+    const homeKey         = padKeys.find(k => k.dataset.page === 'home');
 
     const reduceMotion = window.matchMedia &&
         window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -47,8 +48,7 @@
                         });
                     }
                 } else {
-                    renderPage('blog');
-                    if (window.blog) window.blog.list();
+                    renderPage('home');
                 }
             }
         } else {
@@ -78,6 +78,13 @@
         pages.forEach(p => p.classList.remove('active'));
         padKeys.forEach(k => k.classList.remove('active'));
         pageEl.classList.add('active');
+
+        // Once the user leaves home, the blog button takes over the home slot.
+        if (name !== 'home' && homeKey && homeKey.dataset.page === 'home') {
+            homeKey.dataset.page = 'blog';
+            homeKey.textContent = 'blog';
+        }
+
         const key = padKeys.find(k => k.dataset.page === name);
         if (key) key.classList.add('active');
 
