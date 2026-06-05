@@ -99,12 +99,14 @@ When I'm not building something, I'm usually learning a new technology, experime
   <span class="project-internal" data-tooltip="Source code is not publicly available — built for internal company use">🔒 Internal (source private)</span>
 </div>
 
+/* COMMENTED OUT
 <div class="project-item">
   <span class="project-title">Modem Management Tool</span>
   <div class="project-desc">Designed and implemented an internal tool that automated cellular modem regrading through direct integration with carrier APIs. Replaced a manual workflow requiring analysts to navigate vendor web portals and perform device updates by hand. By leveraging RESTful API calls to execute regrade operations programmatically, the solution reduced processing times from 10–15 minutes to seconds while improving consistency and scalability.</div>
   <span class="project-tech">[Python, REST APIs]</span>
   <span class="project-internal" data-tooltip="Source code is not publicly available — built for internal company use">🔒 Internal (source private)</span>
 </div>
+*/
 
 <div class="project-item">
   <span class="project-title">Baby's First AI Agent</span>
