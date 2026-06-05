@@ -28,15 +28,15 @@ const PAGES = {
 <span class="section-header">About Me</span>
 
 <div class="info-row">
-  <span class="info-label">Name:</span>
+  <span class="info-label">Who I am:</span>
   <span class="info-value">Joshua Bird</span>
 </div>
 <div class="info-row">
-  <span class="info-label">Role:</span>
-  <span class="info-value">Automation and Integration Specialist</span>
+  <span class="info-label">What I am:</span>
+  <span class="info-value">Full Stack Developer</span>
 </div>
 <div class="info-row">
-  <span class="info-label">Location:</span>
+  <span class="info-label">Where I am:</span>
   <span class="info-value">Grand Rapids, MI</span>
 </div>
 
@@ -122,7 +122,7 @@ When I'm not building something, I'm usually learning a new technology, experime
         content: `
 <span class="section-header">Contact</span>
 
-<span class="text-muted">Feel free to reach out &mdash; hover, tab, or click any line.</span>
+<span class="text-muted">Feel free to reach out.</span>
 
 <div class="contact-cards" id="contact-cards" aria-label="Contact methods">
   <a class="contact-card"
@@ -175,8 +175,7 @@ When I'm not building something, I'm usually learning a new technology, experime
 <span class="sr-only" data-copy-announcer aria-live="polite"></span>
 
 <span class="text-success mt-2">
-I'm always open to discussing new projects, creative ideas,
-or opportunities to be part of your vision!</span>
+I'm always open to discussing new projects and ideas.</span>
 `
     },
     
