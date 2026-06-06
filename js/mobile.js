@@ -1,12 +1,11 @@
 /* ========================================
-   Mobile App — Landscape intro + command-pad nav
+   Mobile App — portrait/landscape intro + command-pad nav
    ======================================== */
 
 (function () {
     if (window.innerWidth > 768) return;
 
-    const rotatePrompt    = document.getElementById('rotate-prompt');
-    const mobileLandscape = document.getElementById('mobile-landscape');
+    const mobileShell     = document.getElementById('mobile-shell');
     const pad             = document.getElementById('command-pad');
     const padMirror       = document.getElementById('pad-mirror');
     const padCursor       = document.getElementById('pad-cursor');
@@ -18,42 +17,32 @@
         window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     let introCleanup = null;
-    let landscapeActivated = false;
+    let activated = false;
     let currentPage = null;
     let padBusy = false;
 
-    function isLandscape() {
-        return window.innerWidth > window.innerHeight;
-    }
+    function activate() {
+        mobileShell.style.display = 'flex';
+        if (activated) return;
+        activated = true;
 
-    function updateOrientation() {
-        if (isLandscape()) {
-            rotatePrompt.style.display    = 'none';
-            mobileLandscape.style.display = 'flex';
-            if (!landscapeActivated) {
-                landscapeActivated = true;
-                const params = new URLSearchParams(window.location.search);
-                const deepPost = params.get('post');
-                const deepTag  = params.get('tag');
-                const deepQ    = params.get('q');
-                if (deepPost) {
-                    renderPage('blog');
-                    if (window.blog) window.blog.read(deepPost);
-                } else if (deepTag || deepQ) {
-                    renderPage('blog');
-                    if (window.blog) {
-                        window.blog.list({
-                            tags: deepTag ? deepTag.split(',').filter(Boolean) : [],
-                            q: deepQ || ''
-                        });
-                    }
-                } else {
-                    renderPage('home');
-                }
+        const params = new URLSearchParams(window.location.search);
+        const deepPost = params.get('post');
+        const deepTag  = params.get('tag');
+        const deepQ    = params.get('q');
+        if (deepPost) {
+            renderPage('blog');
+            if (window.blog) window.blog.read(deepPost);
+        } else if (deepTag || deepQ) {
+            renderPage('blog');
+            if (window.blog) {
+                window.blog.list({
+                    tags: deepTag ? deepTag.split(',').filter(Boolean) : [],
+                    q: deepQ || ''
+                });
             }
         } else {
-            rotatePrompt.style.display    = 'flex';
-            mobileLandscape.style.display = 'none';
+            renderPage('home');
         }
     }
 
@@ -162,10 +151,7 @@
         });
     });
 
-    window.addEventListener('resize', updateOrientation);
-    window.addEventListener('orientationchange', updateOrientation);
-
-    updateOrientation();
+    activate();
 })();
 
 
