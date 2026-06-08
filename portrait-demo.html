@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jbird ~ portrait demo</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap">
+    <style>
+        /* ============================================================
+           PORTRAIT DEMO
+           Loads the REAL pages.js + intro.js so the home logo and its
+           chronicle -> unroll -> title animation are identical to the
+           live site. The CSS below only re-skins the content for a
+           narrow, vertical (portrait) layout. Nothing here touches the
+           production files.
+           ============================================================ */
+
+        body {
+            background:
+                radial-gradient(circle at 50% 0%, rgba(57, 211, 83, 0.06), transparent 60%),
+                var(--bg-color);
+        }
+
+        .demo-stage {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        /* Phone-sized frame so it can be reviewed on desktop. On a real
+           phone in portrait (<=480px) the frame chrome is dropped. */
+        .phone {
+            position: relative;
+            width: 100%;
+            max-width: 390px;
+            height: 844px;
+            max-height: 92vh;
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            background-color: var(--terminal-bg);
+            overflow: hidden;
+            box-shadow:
+                inset 0 0 120px rgba(0, 0, 0, 0.55),
+                inset 0 0 30px rgba(0, 0, 0, 0.4),
+                0 0 60px rgba(57, 211, 83, 0.07);
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (max-width: 480px) {
+            .demo-stage { padding: 0; }
+            .phone {
+                max-width: none;
+                height: 100vh;
+                max-height: none;
+                border: none;
+                border-radius: 0;
+            }
+        }
+
+        .mobile-app {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .mobile-content {
+            flex: 1;
+            overflow-y: auto;
+            min-height: 0;
+            padding: 18px 18px 8px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .mobile-page { display: none; animation: fadeIn 0.22s ease; }
+        .mobile-page.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== HOME: center the REAL intro/logo vertically ===== */
+        .mobile-page#page-home.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100%;
+            text-align: center;
+        }
+
+        /* Scale the real (wide) ASCII logo down to fit a narrow screen.
+           The intro wraps the art in a parchment scroll ~64 cols wide, so
+           we size by viewport width to keep it on-screen while it animates. */
+        .phone .ascii-art {
+            font-size: min(calc((100vw - 36px) / 66), 11px);
+            line-height: 1.15;
+            margin: 0 auto;
+        }
+        @media (max-width: 480px) {
+            .phone .ascii-art {
+                font-size: calc((100vw - 24px) / 66);
+            }
+        }
+
+        .phone .chronicle-typer,
+        .phone .title-typer { font-size: 1.15em; }
+
+        .home-welcome {
+            margin-top: 16px;
+            padding: 0 8px;
+            font-size: 13px;
+            line-height: 1.6;
+            max-width: 36ch;
+        }
+
+        /* ===== Shared header ===== */
+        .mobile-page .section-header {
+            display: block;
+            color: var(--accent-color);
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            text-shadow: 0 0 10px rgba(232, 160, 32, 0.35);
+        }
+
+        /* ===== ABOUT: identity card + cards ===== */
+        .mobile-page .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            padding: 9px 14px;
+            border: 1px solid var(--border-color);
+            border-bottom: none;
+            background-color: var(--header-bg);
+        }
+        .mobile-page .info-row:first-of-type { border-radius: 10px 10px 0 0; }
+        .mobile-page .info-row:nth-of-type(3) {
+            border-bottom: 1px solid var(--border-color);
+            border-radius: 0 0 10px 10px;
+            margin-bottom: 18px;
+        }
+        .mobile-page .info-label { color: var(--text-muted); font-size: 12px; }
+        .mobile-page .info-value { color: var(--text-color); font-size: 14px; text-align: right; }
+
+        .mobile-page#page-about { font-size: 13px; line-height: 1.7; color: var(--text-muted); }
+        .mobile-page#page-about > br { display: none; }
+
+        .mobile-page .skill-section {
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background-color: var(--header-bg);
+            padding: 14px;
+            margin: 12px 0;
+        }
+        .mobile-page .skill-section > div:first-child { margin-bottom: 10px; font-size: 12px; }
+        .mobile-page .skill-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .mobile-page .skill-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            background-color: var(--btn-bg);
+            color: var(--text-color);
+            font-size: 12px;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+        .mobile-page .skill-badge.visible { opacity: 1; transform: translateY(0); }
+        .mobile-page .skill-badge i { color: var(--accent-color); }
+        .mobile-page .badge-core .skill-badge { border-color: rgba(57, 211, 83, 0.5); }
+        .mobile-page .badge-developing .skill-badge { border-color: rgba(210, 153, 34, 0.5); }
+        .mobile-page .badge-targeted .skill-badge { border-color: rgba(77, 176, 85, 0.4); }
+
+        /* ===== WORK: stacked project cards ===== */
+        .mobile-page .project-item {
+            display: block;
+            border: 1px solid var(--border-color);
+            border-left: 3px solid var(--accent-color);
+            border-radius: 10px;
+            background-color: var(--header-bg);
+            padding: 16px;
+            margin-bottom: 14px;
+        }
+        .mobile-page .project-title {
+            display: block;
+            color: var(--accent-color);
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+        .mobile-page .project-desc {
+            color: var(--text-muted);
+            font-size: 13px;
+            line-height: 1.65;
+            margin-bottom: 12px;
+        }
+        .mobile-page .project-tech {
+            display: inline-block;
+            color: var(--success-color);
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        .mobile-page .project-github,
+        .mobile-page .project-internal {
+            display: block;
+            padding-top: 10px;
+            border-top: 1px dashed rgba(26, 61, 30, 0.7);
+            font-size: 13px;
+            text-decoration: none;
+        }
+        .mobile-page .project-github { color: var(--text-color); }
+        .mobile-page .project-internal { color: var(--text-muted); }
+
+        /* ===== CONTACT: full-width tappable cards ===== */
+        .mobile-page .contact-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 14px;
+        }
+        .mobile-page .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background-color: var(--header-bg);
+            color: var(--text-color);
+            text-decoration: none;
+        }
+        .mobile-page .contact-card:active { background-color: var(--btn-hover); }
+        .mobile-page .status-led {
+            width: 9px; height: 9px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background-color: var(--success-color);
+            box-shadow: 0 0 8px var(--success-color);
+        }
+        .mobile-page .card-body { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+        .mobile-page .card-prefix { color: var(--text-muted); font-size: 11px; }
+        .mobile-page .card-target {
+            color: var(--text-color);
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .mobile-page .card-action { color: var(--accent-color); font-size: 11px; flex-shrink: 0; }
+
+        /* ===== Command pad: full row of 4 ===== */
+        .command-pad {
+            flex-shrink: 0;
+            border-top: 1px solid var(--border-color);
+            background-color: var(--header-bg);
+            padding: 10px 14px calc(12px + env(safe-area-inset-bottom, 0px));
+        }
+        .pad-prompt {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            min-height: 1.4em;
+            color: var(--text-color);
+            text-shadow: 0 0 8px var(--phosphor-glow), 0 0 2px rgba(57, 211, 83, 0.85);
+        }
+        .pad-prompt .prompt { color: var(--success-color); margin-right: 8px; white-space: nowrap; }
+        .pad-input-mirror { color: var(--text-color); white-space: pre; }
+        .pad-cursor { color: var(--success-color); margin-left: 1px; }
+        .pad-keys {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .pad-key {
+            min-height: 46px;
+            padding: 10px 6px;
+            background-color: var(--btn-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            cursor: pointer;
+            text-shadow: 0 0 8px var(--phosphor-glow), 0 0 2px rgba(57, 211, 83, 0.6);
+            transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.08s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .pad-key:hover { color: var(--text-color); border-color: var(--accent-color); }
+        .pad-key.active {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            background-color: var(--btn-hover);
+        }
+        .pad-key:active { transform: scale(0.97); }
+
+        .demo-note {
+            position: fixed;
+            top: 10px; left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+            background-color: rgba(10, 26, 11, 0.92);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 11px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-note">portrait demo &mdash; real animated logo; tap the nav to switch pages</div>
+
+    <div class="demo-stage">
+        <div class="phone">
+            <div class="mobile-app">
+                <main class="mobile-content">
+                    <section class="mobile-page active" id="page-home"></section>
+                    <section class="mobile-page" id="page-about"></section>
+                    <section class="mobile-page" id="page-work"></section>
+                    <section class="mobile-page" id="page-contact"></section>
+                </main>
+
+                <div class="command-pad" id="command-pad">
+                    <div class="pad-prompt">
+                        <span class="prompt">guest@jbird:~$</span>
+                        <span class="pad-input-mirror" id="pad-mirror"></span><span class="pad-cursor" id="pad-cursor">&#9608;</span>
+                    </div>
+                    <div class="pad-keys">
+                        <button type="button" class="pad-key active" data-page="home">home</button>
+                        <button type="button" class="pad-key" data-page="about">about</button>
+                        <button type="button" class="pad-key" data-page="work">work</button>
+                        <button type="button" class="pad-key" data-page="contact">contact</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Real site code: defines PAGES, ASCII_LOGO, and window.startIntro -->
+    <script src="js/pages.js"></script>
+    <script src="js/intro.js"></script>
+
+    <script>
+        (function () {
+            var keys    = Array.prototype.slice.call(document.querySelectorAll('.pad-key'));
+            var pages   = Array.prototype.slice.call(document.querySelectorAll('.mobile-page'));
+            var mirror  = document.getElementById('pad-mirror');
+            var cursor  = document.getElementById('pad-cursor');
+            var content = document.querySelector('.mobile-content');
+            var introCleanup = null;
+
+            function animateSkillBadges(root) {
+                var badges = root.querySelectorAll('.skill-badge');
+                badges.forEach(function (b, i) {
+                    setTimeout(function () { b.classList.add('visible'); }, i * 55);
+                });
+            }
+
+            // Faithful email assembly (mirrors js/contact.js behavior).
+            function decodeContacts(root) {
+                root.querySelectorAll('.contact-card').forEach(function (card) {
+                    var u = card.getAttribute('data-u');
+                    var d = card.getAttribute('data-d');
+                    var target = card.querySelector('[data-target]');
+                    if (u && d && target) {
+                        target.textContent = u + '@' + d;
+                        card.setAttribute('href', 'mailto:' + u + '@' + d);
+                    }
+                });
+            }
+
+            function render(name) {
+                if (typeof PAGES === 'undefined' || !PAGES[name]) return;
+                var el = document.getElementById('page-' + name);
+                el.innerHTML = PAGES[name].content;
+
+                pages.forEach(function (p) { p.classList.remove('active'); });
+                keys.forEach(function (k) { k.classList.remove('active'); });
+                el.classList.add('active');
+                var key = keys.find(function (k) { return k.dataset.page === name; });
+                if (key) key.classList.add('active');
+                if (content) content.scrollTop = 0;
+
+                if (introCleanup) { introCleanup(); introCleanup = null; }
+
+                if (name === 'home' && typeof window.startIntro === 'function') {
+                    introCleanup = window.startIntro({ root: el });
+                } else if (name === 'about') {
+                    animateSkillBadges(el);
+                } else if (name === 'contact') {
+                    decodeContacts(el);
+                }
+            }
+
+            function typeCommand(name, done) {
+                var i = 0;
+                mirror.textContent = '';
+                (function step() {
+                    i++;
+                    mirror.textContent = name.slice(0, i);
+                    if (i < name.length) {
+                        setTimeout(step, 38 + Math.random() * 22);
+                    } else {
+                        if (cursor) cursor.style.opacity = '1';
+                        setTimeout(function () { mirror.textContent = ''; done(); }, 160);
+                    }
+                })();
+            }
+
+            keys.forEach(function (key) {
+                key.addEventListener('click', function () {
+                    var name = key.dataset.page;
+                    typeCommand(name, function () { render(name); });
+                });
+            });
+
+            // Initial: play the real home intro.
+            render('home');
+        })();
+    </script>
+</body>
+</html>
