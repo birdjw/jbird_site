@@ -40,18 +40,15 @@ const PAGES = {
   <span class="info-value">Grand Rapids, MI</span>
 </div>
 
+<p>I'm Josh.</p>
 
-I'm Josh.  
+<p>I build software, automate workflows, and spend a lot of time thinking, "There has to be a better way to do this." My career started in the United States Air Force, where I served as a Paralegal in the Judge Advocate General's Corps. My work focused on the administrative side of military justice and civil law matters, where I learned an important lesson that still shapes how I approach problems today: Do it right the first time, or you'll be doing it again... and again... and again.</p>
 
+<p>After leaving the Air Force with an honorable discharge in 2016, I enrolled at Arizona State University and earned a Bachelor of Science in Graphic Information Technology. The program had a strong front-end focus, covering web development, user experience, design principles, and digital media. It gave me an appreciation for building things that not only work, but are intuitive and enjoyable to use.</p>
 
+<p>In 2020, I joined W.W. Grainger as a Technical Support Specialist. Working in a technical operations environment exposed me to many opportunities for automation, and I naturally found myself more interested in building solutions than working around limitations. What started as small scripts and process improvements evolved into a serious interest in back-end development, software engineering, APIs, and system integration. Today, I spend much of my time building tools that eliminate manual work, connect systems, and help teams move faster. I'm particularly interested in automation, back-end services, AI-assisted development, and finding creative ways to solve practical business problems.</p>
 
-I build software, automate workflows, and spend a lot of time thinking, "There has to be a better way to do this."  My career started in the United States Air Force, where I served as a Paralegal in the Judge Advocate General's Corps. My work focused on the administrative side of military justice and civil law matters, where I learned an important lesson that still shapes how I approach problems today: Do it right the first time, or you'll be doing it again... and again... and again.  
-
-After leaving the Air Force with an honorable discharge in 2016, I enrolled at Arizona State University and earned a Bachelor of Science in Graphic Information Technology. The program had a strong front-end focus, covering web development, user experience, design principles, and digital media. It gave me an appreciation for building things that not only work, but are intuitive and enjoyable to use.  
-
-In 2020, I joined W.W. Grainger as a Technical Support Specialist. Working in a technical operations environment exposed me to many opportunities for automation, and I naturally found myself more interested in building solutions than working around limitations. What started as small scripts and process improvements evolved into a serious interest in back-end development, software engineering, APIs, and system integration.  Today, I spend much of my time building tools that eliminate manual work, connect systems, and help teams move faster. I'm particularly interested in automation, back-end services, AI-assisted development, and finding creative ways to solve practical business problems.  
-
-When I'm not building something, I'm usually learning a new technology, experimenting with AI tools, or working on personal projects that probably started with the words, "It would be cool if..."
+<p>When I'm not building something, I'm usually learning a new technology, experimenting with AI tools, or working on personal projects that probably started with the words, "It would be cool if..."</p>
 
 <div class="skill-section">
   <div><span class="text-warning">Core Competencies</span> <span class="text-muted">— What I do well now</span></div>

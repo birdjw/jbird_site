@@ -872,6 +872,13 @@ html, body {
     line-height: 1.2;
     margin: 0 auto;
     max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Shift the title-line left to prevent overflow on portrait */
+.mobile-app .ascii-art .title-line {
+    position: relative;
+    left: calc(-10 * 1ch);
 }
 
 /* Mobile Content */
@@ -943,6 +950,15 @@ html, body {
 
 .mobile-project p {
     margin-bottom: 4px;
+}
+
+.mobile-page .project-desc {
+    font-size: 12px;
+}
+
+.mobile-page .section-header + .text-muted {
+    display: block;
+    margin-bottom: 8px;
 }
 
 .mobile-tech {
