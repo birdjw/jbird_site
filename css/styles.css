@@ -1073,7 +1073,7 @@ html, body {
 /* Mobile landscape: roomier padding + larger ASCII frame when rotated */
 @media (max-width: 768px) and (orientation: landscape) {
     .mobile-shell {
-        padding: 16px 20px 0;
+        padding: 8px 20px 0;
     }
 
     .mobile-app .ascii-art {
@@ -1081,12 +1081,17 @@ html, body {
     }
 
     .command-pad {
+        padding: 6px 14px 8px;
         margin: 8px -20px 0;
     }
 
     .mobile-page#page-home .chronicle-typer,
     .mobile-page#page-home .title-typer {
         font-size: 1.35em;
+    }
+
+    .mobile-page#page-home.active {
+        justify-content: flex-start;
     }
 }
 
