@@ -868,7 +868,7 @@ html, body {
 
 /* Fit the full ASCII frame to the viewport width (portrait-friendly) */
 .mobile-app .ascii-art {
-    font-size: min(calc((100vw - 24px) / 70), 13px);
+    font-size: min(calc((100vw - 24px) / 47), 13px);
     line-height: 1.2;
     margin: 0 auto;
     max-width: 100%;
@@ -906,7 +906,7 @@ html, body {
 /* Bump the intro typer sizes on mobile home for legibility */
 .mobile-page#page-home .chronicle-typer,
 .mobile-page#page-home .title-typer {
-    font-size: 1.6em;
+    font-size: 2.25em;
 }
 
 .mobile-page#page-home .home-welcome {
