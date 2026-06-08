@@ -1070,6 +1070,26 @@ html, body {
     }
 }
 
+/* Mobile landscape: roomier padding + larger ASCII frame when rotated */
+@media (max-width: 768px) and (orientation: landscape) {
+    .mobile-shell {
+        padding: 16px 20px 0;
+    }
+
+    .mobile-app .ascii-art {
+        font-size: min(calc((100vw - 32px) / 64), 14px);
+    }
+
+    .command-pad {
+        margin: 8px -20px 0;
+    }
+
+    .mobile-page#page-home .chronicle-typer,
+    .mobile-page#page-home .title-typer {
+        font-size: 1.35em;
+    }
+}
+
 
 /* ========================================
    Utility Classes
