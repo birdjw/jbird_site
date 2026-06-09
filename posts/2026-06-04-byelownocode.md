@@ -2,7 +2,7 @@
 title: Low-Code Has a Problem It Wasn't Built to See Coming
 date: 2026-06-04
 tags: [ai, automation, no-code]
-summary: Low/no-code platforms were built for humans to wire systems together — and that assumption is now in tension with how AI actually interacts with software.
+summary: Low/no-code platforms were built for humans to wire systems together, and that assumption is now in tension with how AI actually interacts with software.
 ---
 
 For years, Low/No Code tools have been pushed as viable tools to build custom software solutions. Drag-and-drop interfaces, prebuilt connectors, and workflow builders that promise to turn business users into developers-lite. And to be fair, they have delivered on that promise, at least in the narrow sense of getting things built faster.
