@@ -1,6 +1,18 @@
 {
   "posts": [
     {
+      "slug": "toy-vs-tool",
+      "title": "Toy vs. Tool: Looking Beyond AI’s Party Tricks",
+      "date": "2026-06-09",
+      "summary": "AI should be judged by utility, not spectacle. Its strongest uses are in reasoning, information processing, and technical work like code and documentation, where it can genuinely extend human capability. Its weakest and most overhyped uses are novelty products like image, video, and music generators, which often create attention more than value. Selective criticism of these “toy” applications is necessary if AI is going to be taken seriously as a useful tool.",
+      "tags": [
+        "ai"
+      ],
+      "wordCount": 1046,
+      "readingMinutes": 5,
+      "file": "posts/2026-06-09-toy-vs-tool.md"
+    },
+    {
       "slug": "hello-world",
       "title": "Hello, World",
       "date": "2026-06-04",
@@ -17,7 +29,7 @@
       "slug": "byelownocode",
       "title": "Low-Code Has a Problem It Wasn't Built to See Coming",
       "date": "2026-06-04",
-      "summary": "Low/no-code platforms were built for humans to wire systems together — and that assumption is now in tension with how AI actually interacts with software.",
+      "summary": "Low/no-code platforms were built for humans to wire systems together, and that assumption is now in tension with how AI actually interacts with software.",
       "tags": [
         "ai",
         "automation",
