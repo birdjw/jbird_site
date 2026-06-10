@@ -2,14 +2,12 @@
 title: Toy vs. Tool: Looking Beyond AI’s Party Tricks
 date: 2026-06-09
 tags: [ai]
-summary: AI should be judged by utility, not spectacle. Its strongest uses are in reasoning, information processing, and technical work like code and documentation, where it can genuinely extend human capability. Its weakest and most overhyped uses are novelty products like image, video, and music generators, which often create attention more than value. Selective criticism of these “toy” applications is necessary if AI is going to be taken seriously as a useful tool.
+summary: AI should be judged by utility, not spectacle. Its strongest uses are in reasoning, information processing, and technical work like code and documentation, where it can genuinely extend human capability. Its weakest and most overhyped uses are novelty products like image, video, and music generators, which often create attention more than value. Selective criticism of these “toy” applications is necessary if AI is going to measure up to what we want it be.
 ---
-
 There are a lot of people yelling about AI right now, and it seems few are yelling about the right things.
 
 Some are holding up AI as a breakthrough that will fundamentally rewrite our reality from the ground up. Others fear it as a cultural and economic threat that must be resisted if only on principle. Both of these positions end up dismissing an important distinction, that some AI applications are genuinely transformative, and others are little more than expensive frivolity.
-
-I will admit a thing can be two things. AI models have a set of tools with very different strengths, costs, and consequences. I have used AI in my own projects and am convinced that it can be an empowering technology. Used well, it can accelerate reasoning, reduce friction in information-heavy work, and help people produce technical output like code far more efficiently than they could on their own. Those are not trivial gains. When people harness these tools properly and for the right reasons, they are game changers. 
+summary: AI should be judged by utility, not spectacle. Its strongest uses are in reasoning, information processing, and technical work like code and documentation, where it can genuinely extend human capability. Its weakest and most overhyped uses are novelty products like image, video, and music generators, which often create attention more than value. Selective criticism of these “toy” applications is necessary if AI is going to measure up to what we want it be.
 
 At the same time, I am fostering a rising skepticism of a class of products that seem to exist not because they solve important problems, but because they create ongoing demand for AI itself. Image generators, video generators, and music generators are drawing most of my ire in this regard. They are, in large part, toys designed to get non-technical users to engage with AI. These products are often marketed as creativity tools, but much of their role has been reduced to a PR campaign. Make it flashy, make it accessible, make it feel magical, and social acceptance will follow.
 
