@@ -1,17 +1,17 @@
 ---
 title: Hello, World
-date: 2026-06-04
+date: 2026-06-03
 tags: [meta, site]
 summary: A placeholder first post to validate the blog pipeline end-to-end.
 ---
 
-This is the first post on my new blog. It exists primarily to validate that the
+This is the first post on my site blog. It exists primarily to validate that the
 build script, manifest, RSS feed, renderer, and deep-link routing all work
 end-to-end. Real content is on the way.
 
 ## Why a blog here
 
-I've been writing more lately — about automation, AI tooling, and the back-end
+I've been thinking a lot — about automation, AI tooling, and the back-end
 work I've been doing at Grainger and on personal projects. Rather than dropping
 those thoughts straight into LinkedIn, I want them to live somewhere I own
 first, and **then** cross-post.

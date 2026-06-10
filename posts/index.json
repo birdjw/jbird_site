@@ -13,19 +13,6 @@
       "file": "posts/2026-06-09-toy-vs-tool.md"
     },
     {
-      "slug": "hello-world",
-      "title": "Hello, World",
-      "date": "2026-06-04",
-      "summary": "A placeholder first post to validate the blog pipeline end-to-end.",
-      "tags": [
-        "meta",
-        "site"
-      ],
-      "wordCount": 183,
-      "readingMinutes": 1,
-      "file": "posts/2026-06-04-hello-world.md"
-    },
-    {
       "slug": "byelownocode",
       "title": "Low-Code Has a Problem It Wasn't Built to See Coming",
       "date": "2026-06-04",
@@ -38,6 +25,19 @@
       "wordCount": 956,
       "readingMinutes": 5,
       "file": "posts/2026-06-04-byelownocode.md"
+    },
+    {
+      "slug": "hello-world",
+      "title": "Hello, World",
+      "date": "2026-06-03",
+      "summary": "A placeholder first post to validate the blog pipeline end-to-end.",
+      "tags": [
+        "meta",
+        "site"
+      ],
+      "wordCount": 183,
+      "readingMinutes": 1,
+      "file": "posts/2026-06-03-hello-world.md"
     }
   ]
 }
