@@ -42,7 +42,7 @@ const PAGES = {
 
 <p>I'm Josh.</p>
 
-<p>I build software, automate workflows, and spend a lot of time thinking, "There has to be a better way to do this." My career started in the United States Air Force, where I served as a Paralegal in the Judge Advocate General's Corps. My work focused on the administrative side of military justice and civil law matters, where I learned an important lesson that still shapes how I approach problems today: Do it right the first time, or you'll be doing it again... and again... and again.</p>
+<p>I build software, automate workflows, and spend a lot of time thinking, "There has to be a better way to do this." My career began in the United States Air Force, where I served as a Paralegal in the Judge Advocate General’s Corps. Supporting military justice and civil law matters taught me the value of precision, documentation, and disciplined execution — lessons that continue to shape how I approach technical problems today.</p>
 
 <p>After leaving the Air Force with an honorable discharge in 2016, I enrolled at Arizona State University and earned a Bachelor of Science in Graphic Information Technology. The program had a strong front-end focus, covering web development, user experience, design principles, and digital media. It gave me an appreciation for building things that not only work, but are intuitive and enjoyable to use.</p>
 
