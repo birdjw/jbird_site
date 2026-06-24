@@ -287,6 +287,16 @@ html, body {
         logoGlitch 6s 1.6s infinite;
 }
 
+/* Bright leading-edge column for the scanline intro reveal */
+.scan-beam {
+    -webkit-text-fill-color: #ffffff;
+    color: #ffffff;
+    text-shadow:
+        0 0 6px #ffffff,
+        0 0 12px #a0f0b0,
+        0 0 22px #39d353;
+}
+
 /* ========================================
    Skill Badges
    ======================================== */

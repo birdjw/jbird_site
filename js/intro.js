@@ -77,7 +77,7 @@
                                 wIdx++;
                                 welcome.textContent = fullText.slice(0, wIdx);
                                 if (wIdx < fullText.length) {
-                                    timer = setTimeout(typeWelcome, 20 + Math.random() * 15);
+                                    timer = setTimeout(typeWelcome, 8 + Math.random() * 8);
                                 } else {
                                     timer = setTimeout(fireComplete, 120);
                                 }
@@ -170,12 +170,42 @@
                 return '\n' + [topRow, topSep, ...contents, botSep, botRow].join('\n');
             }
 
-            const DURATION = 1100;
-            const C1 = 1.20;
-            const C3 = C1 + 1;
-            function easeOutBack(t) {
-                return 1 + C3 * Math.pow(t - 1, 3) + C1 * Math.pow(t - 1, 2);
+            function escapeHtml(s) {
+                return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
             }
+
+            // Same geometry as buildScrollFrame, but wraps the leading-edge
+            // column in a bright "scan beam" span so the reveal reads like a
+            // scanline sweeping left -> right rather than a smooth unroll.
+            function buildScrollFrameHTML(w) {
+                w = Math.min(w, FULL);
+                const spaces = Math.max(0, w - 4);
+                const topRow = escapeHtml(L_CAP + ' '.repeat(spaces) + (w >= 4 ? R_CAP : ''));
+                const botRow = escapeHtml(L_BTM + ' '.repeat(spaces) + (w >= 4 ? R_BTM : ''));
+
+                function sepHTML() {
+                    if (w <= 0) return escapeHtml(L_BBAR + R_BBAR);
+                    return escapeHtml(L_BBAR + '~'.repeat(w - 1)) +
+                        '<span class="scan-beam">~</span>' +
+                        escapeHtml(R_BBAR);
+                }
+                const topSep = sepHTML();
+                const botSep = sepHTML();
+
+                const contents = asciiLines.map(line => {
+                    const vis  = Math.max(0, Math.min(line.length, w - PAD));
+                    const fill = ' '.repeat(Math.max(0, w - PAD - vis));
+                    const lead = vis > 0
+                        ? escapeHtml(line.slice(0, vis - 1)) +
+                          '<span class="scan-beam">' + escapeHtml(line.charAt(vis - 1)) + '</span>'
+                        : '';
+                    return escapeHtml(L_BAR + ' '.repeat(PAD)) + lead + escapeHtml(fill + R_BAR);
+                });
+
+                return '\n' + [topRow, topSep, ...contents, botSep, botRow].join('\n');
+            }
+
+            const DURATION = 1100;
 
             function finishScroll() {
                 if (destroyed) return;
@@ -200,10 +230,9 @@
                 if (destroyed) return;
                 if (startTs == null) startTs = ts;
                 const t = Math.min(1, (ts - startTs) / DURATION);
-                const eased = easeOutBack(t);
-                const w = Math.min(FULL, Math.max(0, Math.round(eased * FULL)));
+                const w = Math.min(FULL, Math.max(0, Math.round(t * FULL)));
                 if (w !== lastW) {
-                    linesEl.textContent = buildScrollFrame(w);
+                    linesEl.innerHTML = buildScrollFrameHTML(w);
                     lastW = w;
                 }
                 if (t < 1) {
