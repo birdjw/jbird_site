@@ -90,6 +90,14 @@ const PAGES = {
 <span class="section-header">Work</span>
 
 <div class="project-item">
+  <span class="project-title">fisc.money</span>
+  <div class="project-desc">A lightweight budgeting app built out of frustration with the complexity and noise of existing tools. The idea is simple: budgeting should not require a learning curve. fisc.money is focused on low-friction transaction logging that keeps your budget visible and front of mind — so staying on track feels natural rather than like a chore. Currently in active development, with an emphasis on clarity, control, and a clean, no-nonsense interface.</div>
+  <span class="project-tech">[Python, HTML, CSS, JS]</span>
+  <a href="https://fisc.money" target="_blank" rel="noopener" class="project-github">↗ fisc.money</a>
+  <a href="https://github.com/birdjw/fisc" target="_blank" rel="noopener" class="project-github">⎇ github.com/birdjw/fisc</a>
+</div>
+
+<div class="project-item">
   <span class="project-title">Account Verification Automation</span>
   <div class="project-desc">Automated a manual account verification workflow, reducing processing time from 5–10 minutes to ~10 seconds per request. Navigates a web-based partner management portal, authenticates users, validates required account settings, and generates consistent results without manual intervention. Originally a CLI utility, later expanded into a GUI application for team-wide adoption using Tkinter. Browser automation was used because the workflow was only accessible through the web interface with no direct API available.</div>
   <span class="project-tech">[Python, Playwright, Tkinter]</span>
