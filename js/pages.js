@@ -46,7 +46,7 @@ const PAGES = {
 
 <p>After leaving the Air Force with an honorable discharge in 2016, I enrolled at Arizona State University and earned a Bachelor of Science in Graphic Information Technology. The program had a strong front-end focus, covering web development, user experience, design principles, and digital media. It gave me an appreciation for building things that not only work, but are intuitive and enjoyable to use.</p>
 
-<p>In 2020, I joined W.W. Grainger as a Technical Support Specialist. Working in a technical operations environment exposed me to many opportunities for automation, and I naturally found myself more interested in building solutions than working around limitations. What started as small scripts and process improvements evolved into a serious interest in back-end development, software engineering, APIs, and system integration. Today, I spend much of my time building tools that eliminate manual work, connect systems, and help teams move faster. I'm particularly interested in automation, back-end services, AI-assisted development, and finding creative ways to solve practical business problems.</p>
+<p>In 2020, I joined W.W. Grainger as an IT Operations Specialist. Working in a technical operations environment exposed me to many opportunities for automation, and I naturally found myself more interested in building solutions than working around limitations. What started as small scripts and process improvements evolved into a serious interest in back-end development, software engineering, APIs, and system integration. Today, I spend much of my time building tools that eliminate manual work, connect systems, and help teams move faster. I'm particularly interested in automation, back-end services, AI-assisted development, and finding creative ways to solve practical business problems.</p>
 
 <p>When I'm not building something, I'm usually learning a new technology, experimenting with AI tools, or working on personal projects that probably started with the words, "It would be cool if..."</p>
 
@@ -58,6 +58,8 @@ const PAGES = {
     <span class="skill-badge"><i class="devicon-linux-plain"></i> Linux / Bash</span>
     <span class="skill-badge">⇌ REST APIs</span>
     <span class="skill-badge"><i class="devicon-postgresql-plain"></i> SQL</span>
+    <span class="skill-badge"><i class="devicon-docker-plain"></i> Docker</span>
+    <span class="skill-badge">⚙ CI/CD</span>
     <span class="skill-badge"><i class="devicon-javascript-plain"></i> JavaScript</span>
     <span class="skill-badge"><i class="devicon-html5-plain"></i> HTML / CSS</span>
     <span class="skill-badge">✦ Generative AI</span>
@@ -67,9 +69,8 @@ const PAGES = {
   <div><span class="text-warning">Skills in Development</span> <span class="text-muted">— What I am actively learning</span></div>
   <div class="skill-badges badge-developing">
     <span class="skill-badge"><i class="devicon-typescript-plain"></i> TypeScript</span>
+    <span class="skill-badge"><i class="devicon-kubernetes-plain"></i> Kubernetes</span>
     <span class="skill-badge"><i class="devicon-react-original"></i> React</span>
-    <span class="skill-badge"><i class="devicon-docker-plain"></i> Docker</span>
-    <span class="skill-badge">⚙ CI/CD</span>
   </div>
 </div>
 <div class="skill-section">
@@ -77,7 +78,6 @@ const PAGES = {
   <div class="skill-badges badge-targeted">
     <span class="skill-badge"><i class="devicon-go-plain"></i> Go</span>
     <span class="skill-badge"><i class="devicon-rust-plain"></i> Rust</span>
-    <span class="skill-badge"><i class="devicon-kubernetes-plain"></i> Kubernetes</span>
   </div>
 </div>
 
