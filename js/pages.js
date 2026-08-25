@@ -90,6 +90,13 @@ const PAGES = {
 <span class="section-header">Work</span>
 
 <div class="project-item">
+  <span class="project-title">Modem Management Tool</span>
+  <div class="project-desc">Designed and implemented an internal tool that automated cellular modem regrading through direct integration with carrier APIs. Replaced a manual workflow requiring analysts to navigate vendor web portals and perform device updates by hand. By leveraging RESTful API calls to execute regrade operations programmatically, the solution reduced processing times from 10–15 minutes to seconds while improving consistency and scalability.</div>
+  <span class="project-tech">[Python, REST APIs]</span>
+  <span class="project-internal" data-tooltip="Source code is not publicly available — built for internal company use">🔒 Internal (source private)</span>
+</div>
+
+<div class="project-item">
   <span class="project-title">fisc.money</span>
   <div class="project-desc">A lightweight budgeting app built out of frustration with the complexity and noise of existing tools. The idea is simple: budgeting should not require a learning curve. fisc.money is focused on low-friction transaction logging that keeps your budget visible and front of mind — so staying on track feels natural rather than like a chore. Currently in active development, with an emphasis on clarity, control, and a clean, no-nonsense interface.</div>
   <span class="project-tech">[Python, HTML, CSS, JS]</span>
